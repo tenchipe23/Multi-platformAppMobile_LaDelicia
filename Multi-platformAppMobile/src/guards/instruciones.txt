@@ -1,0 +1,6 @@
+en esta carpeta van los guards para proteger las rutas y manejar la parte de jwt, 
+o algun otro acceso que este basado en roles ejemplo:
+
+- guards/
+    - auth.guard.ts       
+    - role.guard.ts 
