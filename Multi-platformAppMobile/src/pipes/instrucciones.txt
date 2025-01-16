@@ -1,0 +1,6 @@
+en esta carpeta estaran los pipes personalizados ocupados para transformar datos en plantillas
+ejemplo:
+
+- pipes/                 
+    - format-date.pipe.ts 
+    - other.pipe.ts

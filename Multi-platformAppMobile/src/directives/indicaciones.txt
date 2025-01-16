@@ -1,0 +1,5 @@
+en esta carpeta iran todas las directivas personalizadas que sean nesesarias por ejemplo:
+
+- directives/
+    - highlight.directive.ts
+    - autofocus.directive.ts

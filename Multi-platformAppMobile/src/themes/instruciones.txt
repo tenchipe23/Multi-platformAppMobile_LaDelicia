@@ -1,0 +1,7 @@
+en esta carpeta se almacenaran estilos globales, variables scss y temas personalizados
+que se puedan llegar a implementar
+ejemplo:
+
+- themes/
+    - variables.scss
+    - theme.scss          
