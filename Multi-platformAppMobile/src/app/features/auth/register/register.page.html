@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="title" size="large">Registro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" class="container"> 
+    <div class="title">Panaderia La Delicia</div> 
+    <div class="logo1">  <img src="assets/img/panaderia_removebg_preview.png" alt="Logo Panadería La Delicia" class="logo"> </div>
+ 
+    <div class="container2">
+
+  <form [formGroup]="formularioRegistro" (ngSubmit)="register()">
+
+        <ion-input class="inputs" formControlName="NombreUsuario" label="Nombre de usuario" color="medium" label-placement="floating" fill="outline" ></ion-input>
+
+      <ion-input class="inputs" formControlName="ApellidoP" label="Primer apellido" color="medium" label-placement="floating" fill="outline" ></ion-input>
+
+      <ion-input class="inputs" formControlName="ApellidoS" label="Segundo apellido" color="medium" label-placement="floating" fill="outline" ></ion-input>
+      
+      <ion-input class="inputs" type="tel" formControlName="Telefono" label="Número de télefono"  color="medium" label-placement="floating" fill="outline" maxlength="10"></ion-input>
+
+     <ion-input class="inputs" formControlName="Correo" type="email" color="medium" fill="outline" label="Correo electrónico" label-placement="floating"
+   ></ion-input>
+ 
+   <ion-input class="password" formControlName="password" type="password" value="password" color="medium" fill="outline" label="Contraseña" label-placement="floating" placeholder="Contraseña" maxlength="16"></ion-input>
+
+   <ion-input class="password" formControlName="ConfirmacionPassword" type="password" value="password" color="medium" fill="outline" label="Confirmar contraseña" label-placement="floating" placeholder="Contraseña" maxlength="16"></ion-input>
+  
+      </form>
+
+  </div>
+
+  <ion-button class="button-register" (click)="register()"  expand="block" type="submit">Registrar</ion-button>
+
+  </div>
+    
+</ion-content>
