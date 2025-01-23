@@ -1,0 +1,2 @@
+enesta carpeta van las imagenes, iconos y estilos globales
+dentro de esta carpeta esta una estructura de carpetas espesificas para cada uno de los archivos

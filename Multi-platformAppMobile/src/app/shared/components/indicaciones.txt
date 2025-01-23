@@ -1,0 +1,11 @@
+en esta carpeta estaran todos los componentes que se puedan estar reutilizando un ejemplo seria:
+
+- components/
+    - header/
+        - header.component.ts
+        - header.component.html
+        - header.component.scss
+    - footer/
+        - footer.component.ts
+        - footer.component.html
+        - footer.component.scss
