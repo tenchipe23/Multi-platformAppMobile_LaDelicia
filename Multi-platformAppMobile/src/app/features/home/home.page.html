@@ -1,0 +1,103 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content  [fullscreen]="true">
+  <!-- Banner de bienvenida -->
+  <div class="banner">
+    <ion-img src="../../../assets/img/Fondocanastadepan.jpg" alt="Bienvenido a La Delicia"></ion-img>
+    <div class="banner-text">
+      <h2>¡Bienvenido a Panadería La Delicia!</h2>
+      <p>Descubre nuestros productos frescos y promociones exclusivas.</p>
+      <ion-button expand="full" color="primary" routerLink="/productos">Ver productos</ion-button>
+    </div>
+  </div>
+
+  <!-- Sección de productos destacados -->
+  <section class="section-title">
+    <h3>Productos destacados</h3>
+  </section>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="3">
+        <ion-card>
+          <ion-img src="../../../assets/img/payaso.jpeg"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Panes Frescos</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="full" color="secondary" [routerLink]="['/productos']">Ver más</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" size-md="3">
+        <ion-card>
+          <ion-img src="../../../assets/img/dona.jpeg"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Donas Especiales</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="full" color="secondary" [routerLink]="['/productos']">Ver más</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" size-md="3">
+        <ion-card>
+          <ion-img src="../../../assets/img/barquillo.jpeg"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Pasteles</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="full" color="secondary" [routerLink]="['/productos']">Ver más</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" size-md="3">
+        <ion-card>
+          <ion-img src="../../../assets/img/muffin.jpeg"></ion-img>
+          <ion-card-header>
+            <ion-card-title>Pasteles de Hoja</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="full" color="secondary" [routerLink]="['/productos']">Ver más</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+    <!-- Sección de acceso rápido -->
+    <section class="quick-access">
+      <h3>Acceso Rápido</h3>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="3">
+            <ion-button expand="full" color="primary" [routerLink]="['/pedidos']">
+              <ion-icon name="basket" slot="start"></ion-icon> Mis Pedidos
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-button expand="full" color="secondary" [routerLink]="['/cuenta']">
+              <ion-icon name="person" slot="start"></ion-icon> Mi Cuenta
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-button expand="full" color="tertiary" [routerLink]="['/productos']">
+              <ion-icon name="storefront" slot="start"></ion-icon> Ver Productos
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-button expand="full" color="danger" [routerLink]="['/contacto']">
+              <ion-icon name="mail" slot="start"></ion-icon> Contacto
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
+  
+
+</ion-content>
+
+
+  <!-- Componente de navegación inferior -->
+  <app-tab-bar></app-tab-bar>
