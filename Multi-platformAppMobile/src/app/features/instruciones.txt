@@ -1,0 +1,9 @@
+en esta carpeta se va a contener las vistas o paginas principales de la aplicacion como ejemplo:
+
+- pages/                 }
+    - home/              
+        - home.module.ts 
+        - home.page.ts    
+        - home.page.html 
+        - home.page.scss 
+    - other-page/
