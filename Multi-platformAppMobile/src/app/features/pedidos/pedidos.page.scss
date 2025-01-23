@@ -1,0 +1,58 @@
+/* Estilos generales */
+ion-card {
+    margin: 10px 0;
+    border-radius: 8px;
+  }
+  
+  ion-card-header {
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  ion-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  ion-card-subtitle {
+    font-size: 0.9em;
+    color: #777;
+  }
+  
+  ion-card-content {
+    font-size: 1em;
+  }
+  
+  ion-button {
+    margin-top: 10px;
+    border-radius: 20px;
+  }
+  
+  /* Colores para el estado del pedido */
+  .pending {
+    color: #ff9900;
+  }
+  
+  .completed {
+    color: #28a745;
+  }
+  
+  ion-grid {
+    padding: 10px;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 600px) {
+    ion-card-title {
+      font-size: 1em;
+    }
+  
+    ion-card-subtitle {
+      font-size: 0.8em;
+    }
+  
+    ion-button {
+      font-size: 0.9em;
+    }
+  }
+  
