@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="warning" >
+  <ion-toolbar color="warning">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
@@ -7,10 +7,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">carrito</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Lista de productos en el carrito -->
+  <ion-list *ngIf="carrito.length > 0">
+    <ion-item *ngFor="let item of carrito">
+      <ion-thumbnail slot="start">
+        <img src="../../assets/img/image.png" alt="{{ item.name_product }}" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.name_product }}</h2>
+        <p>{{ item.price_product | currency }}</p>
+        <p>Cantidad: {{ item.quantity }}</p>
+      </ion-label>
+      <ion-button color="danger" size="small" (click)="eliminarDelCarrito(item)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+          <!-- Mostrar el total del carrito -->
+  <ion-item>
+    <ion-label>
+      <h3>Total:</h3>
+      <p>{{ total | currency }}</p> <!-- Muestra el total calculado -->
+    </ion-label>
+  </ion-item>
+    <ion-button expand="block" color="warning">
+      <ion-icon name="bag-check-outline" slot="start"></ion-icon>
+      Comprar ahora
+    </ion-button>
+  </ion-list>
+
+  <!-- Mensaje si el carrito está vacío -->
+  <div *ngIf="carrito.length === 0" class="empty-cart">
+    <ion-icon name="cart-outline"></ion-icon>
+    <h2>¡Tu carrito está vacío!</h2>
+    <p>Explora nuestros productos y agrega lo que necesitas.</p>
+    <ion-button expand="full" routerLink="/productos">Ver Productos</ion-button>
+  </div>
 </ion-content>
