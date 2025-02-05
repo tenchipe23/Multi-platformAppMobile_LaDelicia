@@ -1,0 +1,25 @@
+/* productos.page.scss */
+ion-content {
+    margin-bottom: 60px; /* Ajusta este valor según la altura de tu tab bar */
+  }
+  
+  .product-img {
+    width: 100%; /* Ajusta el ancho al 100% del card */
+    max-height: 180px; /* Limita la altura de la imagen */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    border-radius: 10px; /* Opcional: suaviza los bordes */
+  }
+ion-searchbar {
+  --background: #f2f2f2; /* Cambia el fondo de la barra de búsqueda */
+  --color: #333; /* Cambia el color del texto de la barra de búsqueda */
+}
+
+h2 {
+
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--ion-color-dark);
+}
