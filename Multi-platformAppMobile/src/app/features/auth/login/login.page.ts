@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
     this.authService.login(username, email, this.password).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response);
+        this.presentToast('Inicio de sesión exitoso');  // Mensaje de confirmación
         this.router.navigate(['/home']);
       },
       error: (err) => {
@@ -64,6 +65,7 @@ export class LoginPage implements OnInit {
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
+      color: 'success',
       duration: 3000,
       position: 'bottom',
     });

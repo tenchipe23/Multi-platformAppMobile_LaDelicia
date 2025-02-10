@@ -1,51 +1,102 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { RegisterService } from 'src/app/core/services/register.service';
+import { NgForm } from '@angular/forms';
+
+interface UserData {
+  username: string;
+  name: string;
+  first_surname: string;
+  last_surname: string;
+  phone_number: string;
+  email: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  standalone:false
+  standalone: false,
 })
-export class RegisterPage implements OnInit {
-  formularioRegistro: FormGroup;
+export class RegisterPage implements OnInit, AfterViewInit {
+  @ViewChild('registerForm') registerForm?: NgForm;
 
-  constructor(public fb: FormBuilder, 
-              public alertController: AlertController,
-              private navController: NavController) { 
-    this.formularioRegistro = this.fb.group({
-      'NombreUsuario': new FormControl("", Validators.required),
-      'ApellidoP': new FormControl("", Validators.required),
-      'Telefono': new FormControl("", [Validators.required, Validators.pattern('^[0-9]{10}$')]),
-      'Correo': new FormControl("", [Validators.required, Validators.email]),
-      'password': new FormControl("", Validators.required),
-      'ConfirmacionPassword': new FormControl("", Validators.required),
-    });
-  }
+  userData: UserData = {
+    username: '',
+    name: '',
+    first_surname: '',
+    last_surname: '',
+    phone_number: '',
+    email: '',
+    password: ''
+  };
+
+  confirmPassword = '';
+  isProcessing = false;
+
+  constructor(
+    private registerService: RegisterService,
+    private router: Router,
+    private toastController: ToastController
+  ) {}
 
   ngOnInit() {}
 
-  async register() {
-    if (this.formularioRegistro.valid) {
-      const formValues = this.formularioRegistro.value;
-      console.log('NombreUsuario:', formValues.NombreUsuario);
-      console.log('ApellidoP:', formValues.ApellidoP);
-      console.log('Telefono:', formValues.Telefono);
-      console.log('Correo:', formValues.Correo);
-      console.log('password:', formValues.password);
-      console.log('ConfirmacionPassword:', formValues.ConfirmacionPassword);
-      this.navController.navigateBack('/login');
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Formulario incompleto',
-        message: 'Debe llenar todos los campos requeridos.',
-        buttons: ['Aceptar'],
+  ngAfterViewInit() {
+    setTimeout(() => {
+      if (!this.registerForm) {
+        console.error('El formulario no se ha inicializado correctamente');
+      }
+    });
+  }
+
+  isValidEmail(): boolean {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(this.userData.email);
+  }
+
+  isValidPhone(): boolean {
+    return /^[0-9]{10}$/.test(this.userData.phone_number);
+  }
+
+  isValidPassword(): boolean {
+    return this.userData.password === this.confirmPassword;
+  }
+
+  async register(): Promise<void> {
+    if (this.registerForm && this.registerForm.valid && this.isValidPassword() && this.isValidPhone() && this.isValidEmail()) {
+      this.isProcessing = true;
+      this.registerService.register(this.userData).subscribe({
+        next: async (response) => {
+          this.isProcessing = false;
+          if (response.token) {
+            await this.presentToast('Registro exitoso', 'success');
+            this.router.navigate(['/home']);
+          } else {
+            await this.presentToast('Registro exitoso. Inicia sesión', 'success');
+            this.router.navigate(['/login']);
+          }
+        },
+        error: async (error) => {
+          this.isProcessing = false;
+          await this.presentToast(error.message, 'danger');
+        }
       });
-      await alert.present();
-      this.navController.navigateRoot(['/registro']);
     }
   }
 
+  async presentToast(message: string, color: string = 'danger') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color
+    });
+    await toast.present();
+  }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

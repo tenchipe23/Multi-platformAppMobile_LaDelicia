@@ -20,7 +20,7 @@
         <p>{{ item.price_product | currency }}</p>
         <p>Cantidad: {{ item.quantity }}</p>
       </ion-label>
-      <ion-button color="danger" size="small" (click)="eliminarDelCarrito(item)">
+      <ion-button color="danger" size="small" (click)="confirmarEliminacion(item)">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-item>
