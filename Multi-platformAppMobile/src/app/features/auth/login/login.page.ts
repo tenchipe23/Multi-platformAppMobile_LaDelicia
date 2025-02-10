@@ -39,8 +39,9 @@ export class LoginPage implements OnInit {
     this.authService.login(username, email, this.password).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response);
-        this.presentToast('Inicio de sesión exitoso');  // Mensaje de confirmación
-        this.router.navigate(['/home']);
+        localStorage.setItem('token', response.token); 
+        this.presentToast('Inicio de sesión exitoso');  
+        this.router.navigate(['/home']); 
       },
       error: (err) => {
         console.error('Error al iniciar sesión', err);
