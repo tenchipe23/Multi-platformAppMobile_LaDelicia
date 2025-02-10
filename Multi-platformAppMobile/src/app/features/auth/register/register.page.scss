@@ -1,0 +1,85 @@
+ion-title {
+  color: #333;
+}
+
+ion-toolbar {
+  background-color: var(--ion-color-colores1);
+}
+
+ion-content {
+  --ion-background-color: #fff2e1;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo1 {
+  width: 100px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.input-field, .password {
+  padding: 15px;
+  background-color: #ffe7a9;
+  color: #333;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.password {
+  margin-top: 10px;
+}
+
+.button-ingresar, .button-registrar {
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button-ingresar {
+  --background: #659287;
+}
+
+.button-registrar {
+  --background: #B1C29E;
+}
+
+.register-link {
+  display: block;
+  margin-top: 10px;
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+}
+
+.container2 {
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 10px;
+}

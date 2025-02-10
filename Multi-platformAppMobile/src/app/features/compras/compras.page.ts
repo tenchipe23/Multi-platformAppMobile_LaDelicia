@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-compras',
@@ -10,9 +11,15 @@ export class ComprasPage implements OnInit {
 
   titulo: string = 'Compras';
 
-  constructor() { }
+
+
+  constructor( private navController: NavController) { }
 
   ngOnInit() {
+  }
+
+  irATienda() {
+    this.navController.navigateRoot('/productos');
   }
 
 }
