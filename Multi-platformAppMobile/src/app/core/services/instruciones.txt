@@ -1,0 +1,8 @@
+en esta carpeta se manejara todo lo relacionado con la logica del negocio compartida,
+como las peticiones http, auntenticacion, etc
+ejemplo: 
+
+- services/
+    - api.service.ts 
+    - auth.service.ts
+    - data.service.ts

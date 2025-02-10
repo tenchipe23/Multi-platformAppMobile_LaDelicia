@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <div id="container" class="container"> 
+    <div class="title">Panadería La Delicia</div> 
+    <div class="logo1">  
+      <img src="assets/icons/Imagen1.png" alt="Logo Panadería La Delicia" class="logo"> 
+    </div>
+
+    <div class="container2">
+      <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
+        
+        <!-- Campo de usuario -->
+        <ion-input [(ngModel)]="userData.username" name="username" class="input-field" type="text" color="medium" fill="outline" 
+          label="Usuario" labelPlacement="floating" required></ion-input>
+
+        <!-- Campo de nombre -->
+        <ion-input [(ngModel)]="userData.name" name="name" class="input-field" type="text" color="medium" fill="outline" 
+          label="Nombre" labelPlacement="floating" required></ion-input>
+
+        <!-- Campo de apellidos -->
+        <ion-input [(ngModel)]="userData.first_surname" name="first_surname" class="input-field" type="text" color="medium" fill="outline" 
+          label="Apellido Paterno" labelPlacement="floating" required></ion-input>
+
+        <ion-input [(ngModel)]="userData.last_surname" name="last_surname" class="input-field" type="text" color="medium" fill="outline" 
+          label="Apellido Materno" labelPlacement="floating" required></ion-input>
+
+        <!-- Campo de teléfono -->
+        <ion-input [(ngModel)]="userData.phone_number" name="phone_number" class="input-field" type="tel" color="medium" fill="outline" 
+          label="Teléfono" labelPlacement="floating" maxlength="10" pattern="[0-9]{10}" required></ion-input>
+        <p class="error" *ngIf="!isValidPhone()">Teléfono inválido (Debe ser de 10 dígitos)</p>
+
+        <!-- Campo de correo -->
+        <ion-input [(ngModel)]="userData.email" name="email" class="input-field" type="email" color="medium" fill="outline" 
+          label="Correo electrónico" labelPlacement="floating" required></ion-input>
+        <p class="error" *ngIf="!isValidEmail()">Correo inválido</p>
+
+        <!-- Campo de contraseña -->
+        <ion-input [(ngModel)]="userData.password" name="password" class="password" type="password" color="medium" fill="outline" 
+          label="Contraseña" labelPlacement="floating" maxlength="16" required></ion-input>
+
+        <!-- Confirmar contraseña -->
+        <ion-input [(ngModel)]="confirmPassword" name="confirmPassword" class="password" type="password" color="medium" fill="outline" 
+          label="Confirmar contraseña" labelPlacement="floating" required></ion-input>
+        <p class="error" *ngIf="!isValidPassword()">Las contraseñas no coinciden</p>
+
+        <ion-button class="button-registrar" expand="block" type="submit" [disabled]="registerForm?.invalid || isProcessing">
+          <ion-spinner *ngIf="isProcessing"></ion-spinner>
+          <span *ngIf="!isProcessing">Registrarme</span>
+        </ion-button>
+      </form>
+    </div>
+
+    <a href="javascript:void(0)" class="register-link" (click)="goToLogin()">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+  </div>
+</ion-content>
