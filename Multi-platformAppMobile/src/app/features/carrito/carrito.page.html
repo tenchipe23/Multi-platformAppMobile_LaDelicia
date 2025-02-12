@@ -13,24 +13,31 @@
   <ion-list *ngIf="carrito.length > 0">
     <ion-item *ngFor="let item of carrito">
       <ion-thumbnail slot="start">
-        <img src="../../assets/img/image.png" alt="{{ item.name_product }}" />
+        <img [src]="item.image" alt="{{ item.name_product }}" />
       </ion-thumbnail>
       <ion-label>
         <h2>{{ item.name_product }}</h2>
         <p>{{ item.price_product | currency }}</p>
-        <p>Cantidad: {{ item.quantity }}</p>
+        <div class="quantity-controls">
+          <ion-button fill="outline" (click)="decreaseQuantity(item)" [disabled]="item.quantity <= 1">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </ion-button>
+          <span class="quantity-value">{{ item.quantity }}</span>
+          <ion-button fill="outline" (click)="increaseQuantity(item)" [disabled]="item.quantity >= item.stock">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>        </div>
       </ion-label>
       <ion-button color="danger" size="small" (click)="confirmarEliminacion(item)">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-item>
-          <!-- Mostrar el total del carrito -->
-  <ion-item>
-    <ion-label>
-      <h3>Total:</h3>
-      <p>{{ total | currency }}</p> <!-- Muestra el total calculado -->
-    </ion-label>
-  </ion-item>
+    <!-- Mostrar el total del carrito -->
+    <ion-item>
+      <ion-label>
+        <h3>Total:</h3>
+        <p>{{ total | currency }}</p> <!-- Muestra el total calculado -->
+      </ion-label>
+    </ion-item>
     <ion-button expand="block" color="warning">
       <ion-icon name="bag-check-outline" slot="start"></ion-icon>
       Comprar ahora

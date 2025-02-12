@@ -1,5 +1,5 @@
 ion-title {
-  color: #333;
+  color: var(--ion-text-color);
 }
 
 ion-toolbar {
@@ -7,8 +7,10 @@ ion-toolbar {
 }
 
 ion-content {
-  --ion-background-color: #fff2e1;
+  --ion-background-color: var(--ion-background-color);
 }
+
+
 
 .container {
   padding: 20px;
@@ -28,14 +30,13 @@ ion-content {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--ion-text-color);
   text-align: center;
 }
 
 .input-field, .password {
   padding: 15px;
-  background-color: #ffe7a9;
-  color: #333;
+  color: var(--ion-text-color);
   width: 100%;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -56,11 +57,11 @@ ion-content {
 }
 
 .button-ingresar {
-  --background: #659287;
+  color: warning;
 }
 
 .button-registrar {
-  --background: #B1C29E;
+  color: warning;
 }
 
 .register-link {
@@ -82,4 +83,20 @@ ion-content {
   font-size: 14px;
   text-align: left;
   margin-bottom: 10px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+
+  ion-button {
+    margin: 0;
+    --padding-start: 4px;
+    --padding-end: 4px;
+    height: 100%;
+  }
+
+  ion-icon {
+    font-size: 1.2em;
+  }
 }

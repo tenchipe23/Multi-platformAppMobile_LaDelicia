@@ -38,20 +38,6 @@
         (ionChange)="toggleDarkMode()">
       </ion-toggle>
     </ion-item>
-    <ion-item lines="none" (click)="openLanguageSelection()">
-      <ion-icon name="language-outline" slot="start"></ion-icon>
-      <ion-label>Idioma</ion-label>
-      <ion-note slot="end">
-        <span>{{ getLanguageName(settings.language) }}</span>
-      </ion-note>
-    </ion-item>
-    <ion-item lines="none" (click)="openCurrencySelection()">
-      <ion-icon name="cash-outline" slot="start"></ion-icon>
-      <ion-label>Moneda</ion-label>
-      <ion-note slot="end">
-        <span>{{ getCurrencyName(settings.currency) }}</span>
-      </ion-note>
-    </ion-item>
   </div>
 
   <!-- Notifications -->
