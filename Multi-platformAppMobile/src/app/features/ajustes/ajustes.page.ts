@@ -32,10 +32,16 @@ export class AjustesPage implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    this.settings.darkMode = darkMode;
+    document.body.classList.toggle('dark', darkMode);
+  }
 
   toggleDarkMode() {
     this.settings.darkMode = !this.settings.darkMode;
+    document.body.classList.toggle('dark', this.settings.darkMode);
+    localStorage.setItem('darkMode', this.settings.darkMode.toString());
     console.log('Modo oscuro:', this.settings.darkMode);
   }
 
@@ -68,4 +74,6 @@ export class AjustesPage implements OnInit {
     console.log('Eliminar cuenta');
     // Lógica para eliminar la cuenta
   }
+
+  
 }

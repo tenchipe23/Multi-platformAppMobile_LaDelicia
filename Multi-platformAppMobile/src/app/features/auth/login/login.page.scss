@@ -1,5 +1,5 @@
 ion-title {
-    color: #333;
+    color: var(--ion-text-color);
 }
 
 ion-toolbar {
@@ -7,7 +7,7 @@ ion-toolbar {
 }
 
 ion-content {
-    --ion-background-color: #fff2e1;
+    --ion-background-color: var(--ion-background-color);
 }
 
 .container {
@@ -28,38 +28,38 @@ ion-content {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--ion-text-color);
     text-align: center;
 }
 
-.input-field {
+.input-field, .password {
+    padding: 15px;
+    color: var(--ion-text-color);
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
-/* Botones */
-.button-ingresar {
-    padding: 50px;
+.password {
+    margin-top: 10px;
+}
+
+.button-ingresar, .button-registrar {
+    padding: 12px;
     width: 100%;
-    margin-bottom: 10px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    text-align: center;
+}
+
+.button-ingresar {
+    color: warning;
 }
 
 .button-registrar {
-    padding: 50px;
-    width: 100%;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    color: warning;
 }
 
 .register-link {
@@ -76,28 +76,25 @@ ion-content {
     margin-top: 30px;
 }
 
-
-.email {
-    padding: 20px;
-    background-color: #ffe7a9;
-    color: #333;
-    width: 100%;
+.error {
+    color: red;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
-.password {
-    align-content: center;
-    padding: 60px;
-    background-color: #ffe7a9;
-    margin-top: 16px;
-    color: #333;
+.password-wrapper {
+    position: relative;
     width: 100%;
 
-}
+    ion-button {
+        margin: 0;
+        --padding-start: 4px;
+        --padding-end: 4px;
+        height: 100%;
+    }
 
-.button-ingresar {
-    --background: #659287
-}
-
-.button-registrar {
-    --background: #B1C29E;
+    ion-icon {
+        font-size: 1.2em;
+    }
 }

@@ -65,4 +65,20 @@ export class CarritoPage implements OnInit {
 
     await toast.present();
   }
+
+  // Aumentar la cantidad de un producto en el carrito
+  increaseQuantity(item: any) {
+    if (item.quantity < item.stock) {
+      item.quantity++;
+      this.cartService.actualizarCarrito(this.carrito);
+    }
+  }
+
+  // Disminuir la cantidad de un producto en el carrito
+  decreaseQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.cartService.actualizarCarrito(this.carrito);
+    }
+  }
 }

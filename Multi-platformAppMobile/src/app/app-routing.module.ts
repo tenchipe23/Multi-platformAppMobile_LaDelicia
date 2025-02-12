@@ -82,12 +82,13 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./features/auth/login/login.module').then(m => m.LoginPageModule),
-    canActivate: [RedirectGuard]
+    canActivate: [RedirectGuard],
   },
   {
     path: 'register',
     loadChildren: () => import('./features/auth/register/register.module').then(m => m.RegisterPageModule),
-    canActivate: [RedirectGuard]
+    canActivate: [RedirectGuard],
+    data: { hideMenu: true }
   }
 ];
 
