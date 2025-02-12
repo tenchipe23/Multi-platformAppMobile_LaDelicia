@@ -1,0 +1,19 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Compras</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- componente compartido -->
+  <app-tab-bar></app-tab-bar>
+
+  <!-- Contenedor para el mensaje de no compras -->
+  <div class="no-compras-container">
+    <ion-icon name="cart-outline" class="no-compras-icon"></ion-icon>
+    <p class="no-compras-message">Aún no has realizado compras.</p>
+    <ion-button fill="outline" shape="round" color="primary" (click)="irATienda()">Explorar productos</ion-button>
+  </div>
+</ion-content>

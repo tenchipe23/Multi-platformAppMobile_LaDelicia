@@ -1,0 +1,64 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Banner de bienvenida -->
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Panadería La Delicia</h1>
+      <p>Pan fresco y delicioso todos los días.</p>
+      <ion-button fill="solid" shape="round" color="warning" routerLink="/productos">
+        Explorar productos
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Sección de productos destacados -->
+  <div class="productos-destacados">
+    <h3>Nuestros productos</h3>
+    <div class="productos-container">
+      <div class="producto">
+        <ion-img src="../../../assets/img/fresco.jpg"></ion-img>
+        <p>Pan Fresco</p>
+      </div>
+      <div class="producto">
+        <ion-img src="../../../assets/img/pastelmod.jpeg"></ion-img>
+        <p>Deliciosa Pasteleria</p>
+      </div>
+      <div class="producto">
+        <ion-img src="../../../assets/img/panM.jpg"></ion-img>
+        <p>Pan Para Cada Temporada</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de acceso rápido -->
+  <section class="quick-access">
+    <h3 style="display: flex; justify-content: center;"><b>Acceso Rápido</b></h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="primary" [routerLink]="['/pedidos']">
+            <ion-icon name="basket" slot="start"></ion-icon> Mis Pedidos
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="secondary" [routerLink]="['/mi-perfil']">
+            <ion-icon name="person" slot="start"></ion-icon> Mi Cuenta
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="tertiary" [routerLink]="['/productos']">
+            <ion-icon name="storefront" slot="start"></ion-icon> Ver Productos
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="danger" [routerLink]="['/contacto']">
+            <ion-icon name="mail" slot="start"></ion-icon> Contacto
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>
+
+<app-tab-bar></app-tab-bar>

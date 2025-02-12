@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mi Perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Sección superior con foto de usuario -->
+  <div class="profile-header">
+    <ion-avatar class="profile-photo">
+      <img src="../../../assets/img/usuario.png" alt="Foto del usuario" />
+    </ion-avatar>
+    <ion-button expand="block" fill="outline" color="warning" class="change-photo-button">
+      Cambiar foto
+    </ion-button>
+  </div>
+
+  <!-- Sección inferior con datos personales -->
+  <ion-list class="profile-details">
+    <ion-item class="separator">
+      <ion-label>Nombre:</ion-label>
+      <ion-text> Roberto </ion-text>
+    </ion-item>
+    <ion-item class="separator">
+      <ion-label>Primer apellido:</ion-label>
+      <ion-text> Herrera </ion-text>
+    </ion-item>
+    <ion-item class="separator">
+      <ion-label>Segundo apellido:</ion-label>
+      <ion-text> Zetina </ion-text>
+    </ion-item>
+    <ion-item class="separator">
+      <ion-label>Correo electrónico:</ion-label>
+      <ion-text> herrerabeto501gmail.com </ion-text>
+    </ion-item>
+    <ion-item class="separator">
+      <ion-label>Teléfono:</ion-label>
+      <ion-text> 274-111-9206 </ion-text>
+    </ion-item>
+    <ion-item class="separator">
+      <ion-label>Nombre de usuario:</ion-label>
+      <ion-text> roberto </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-button 
+  expand="block" 
+  color="danger" 
+  fill="outline" (click)="logout()">
+  Cerrar Sesión
+</ion-button>
+
+</ion-content>

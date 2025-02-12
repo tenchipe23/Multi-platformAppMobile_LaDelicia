@@ -1,0 +1,28 @@
+.empty-cart {
+    text-align: center;
+    margin-top: 50%;
+  
+    ion-icon {
+      font-size: 80px;
+      color: var(--ion-color-medium);
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+  
+    p {
+      color: var(--ion-color-dark);
+    }
+  }
+  
+  /* Ajustes al botón de eliminar */
+  ion-button {
+    margin-left: auto;
+  }
+  
+.quantity-value {
+    margin: 10px;
+    margin-top: 20px;
+  }
