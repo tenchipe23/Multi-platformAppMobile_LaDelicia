@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../core/services/product.service';
 import { CartService } from '../../core/services/cart.service'; // Importa el servicio del carrito
-import { ToastController } from '@ionic/angular'; // Para mostrar notificaciones
+import { ToastController, AlertController } from '@ionic/angular'; // Para mostrar notificaciones y alertas
 
 @Component({
   selector: 'app-producto-detalle',
@@ -18,7 +18,8 @@ export class ProductoDetallePage implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService, // Servicio del carrito
-    private toastController: ToastController // Para mostrar notificaciones
+    private toastController: ToastController, // Para mostrar notificaciones
+    private alertController: AlertController // Para mostrar alertas
   ) {}
 
   ngOnInit() {
@@ -54,6 +55,29 @@ export class ProductoDetallePage implements OnInit {
     }
   }
 
+  // Mostrar alerta de confirmación
+  async confirmarAgregarAlCarrito() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: `¿Está seguro de que desea agregar "${this.producto.name_product}" al carrito?`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        },
+        {
+          text: 'Agregar',
+          handler: () => {
+            this.agregarAlCarrito();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   // Agregar el producto al carrito
   async agregarAlCarrito() {
     if (this.producto) {
@@ -61,15 +85,20 @@ export class ProductoDetallePage implements OnInit {
         ...this.producto,
         quantity: this.quantity, // Agrega la cantidad seleccionada
       };
-      this.cartService.agregarProducto(productoConCantidad); // Agrega el producto al carrito
+      const agregado = await this.cartService.agregarProducto(productoConCantidad); // Agrega el producto al carrito
 
-      // Mostrar notificación
-      const toast = await this.toastController.create({
-        message: 'Producto agregado al carrito correctamente!',
-        duration: 2000,
-        color: 'success',
-      });
-      toast.present();
+      if (agregado) {
+        // Mostrar notificación
+        const toast = await this.toastController.create({
+          message: 'Producto agregado al carrito correctamente!',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
+
+        // Reiniciar el contador de cantidad
+        this.quantity = 1;
+      }
     }
   }
 }

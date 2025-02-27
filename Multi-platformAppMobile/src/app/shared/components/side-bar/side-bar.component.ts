@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
-import { AuthService } from '../../core/services/auth.service';
+import { Component, Input } from '@angular/core';
+import { NavController, AlertController } from '@ionic/angular';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
-  selector: 'app-mi-perfil',
-  templateUrl: './mi-perfil.page.html',
-  styleUrls: ['./mi-perfil.page.scss'],
+  selector: 'app-side-bar',
+  templateUrl: './side-bar.component.html',
+  styleUrls: ['./side-bar.component.scss'],
   standalone: false
 })
-export class MiPerfilPage implements OnInit {
+export class SideBarComponent {
+  @Input() showMenu: boolean = false;
 
   constructor(
     private navController: NavController,
     private authService: AuthService,
     private alertController: AlertController
-  ) { }
-
-  ngOnInit() {
-  }
+  ) {}
 
   async logout() {
     const alert = await this.alertController.create({
@@ -41,5 +38,4 @@ export class MiPerfilPage implements OnInit {
 
     await alert.present();
   }
-
 }
