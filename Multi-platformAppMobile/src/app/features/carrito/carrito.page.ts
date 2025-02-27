@@ -81,4 +81,25 @@ export class CarritoPage implements OnInit {
       this.cartService.actualizarCarrito(this.carrito);
     }
   }
+
+  // Crear una orden
+  async crearOrden() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.mostrarToast('Error: No se encontró el token de usuario.');
+      return;
+    }
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const clientId = payload.userId;
+
+    const ordenCreada = await this.cartService.crearOrden(clientId);
+    if (ordenCreada) {
+      this.mostrarToast('Orden creada exitosamente');
+      this.cartService.limpiarCarrito();
+      this.carrito = [];
+    } else {
+      this.mostrarToast('Error al crear la orden');
+    }
+  }
 }
