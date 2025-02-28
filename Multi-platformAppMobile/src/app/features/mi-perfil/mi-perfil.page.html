@@ -25,30 +25,18 @@
   </div>
 
   <!-- Sección inferior con datos personales -->
-  <ion-list class="profile-details">
-    <ion-item class="separator">
-      <ion-label>Nombre:</ion-label>
-      <ion-text> Roberto </ion-text>
-    </ion-item>
-    <ion-item class="separator">
-      <ion-label>Primer apellido:</ion-label>
-      <ion-text> Herrera </ion-text>
-    </ion-item>
-    <ion-item class="separator">
-      <ion-label>Segundo apellido:</ion-label>
-      <ion-text> Zetina </ion-text>
-    </ion-item>
-    <ion-item class="separator">
-      <ion-label>Correo electrónico:</ion-label>
-      <ion-text> herrerabeto501gmail.com </ion-text>
-    </ion-item>
-    <ion-item class="separator">
-      <ion-label>Teléfono:</ion-label>
-      <ion-text> 274-111-9206 </ion-text>
-    </ion-item>
-    <ion-item class="separator">
+  <ion-list class="profile-details" *ngIf="user">
+    <ion-item class="separator" *ngIf="user.username">
       <ion-label>Nombre de usuario:</ion-label>
-      <ion-text> roberto </ion-text>
+      <ion-text> {{ user.username }} </ion-text>
+    </ion-item>
+    <ion-item class="separator" *ngIf="user.email">
+      <ion-label>Correo electrónico:</ion-label>
+      <ion-text> {{ user.email }} </ion-text>
+    </ion-item>
+    <ion-item class="separator" *ngIf="user.role">
+      <ion-label>Rol:</ion-label>
+      <ion-text> {{ user.role }} </ion-text>
     </ion-item>
   </ion-list>
 

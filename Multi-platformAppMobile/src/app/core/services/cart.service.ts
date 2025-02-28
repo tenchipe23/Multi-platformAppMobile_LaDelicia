@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importa HttpClient y HttpHeaders
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
@@ -6,8 +7,9 @@ import { ToastController } from '@ionic/angular';
 })
 export class CartService {
   private carrito: any[] = []; // Almacena los productos en el carrito
+  private apiUrl = 'http://localhost:3100/api/orders/create/order'; // URL de la API
 
-  constructor(private toastController: ToastController) {}
+  constructor(private toastController: ToastController, private http: HttpClient) {} // Inyecta HttpClient
 
   // Agregar un producto al carrito
   async agregarProducto(producto: any): Promise<boolean> {
@@ -56,5 +58,32 @@ export class CartService {
 
   actualizarCarrito(nuevoCarrito: any[]) {
     this.carrito = nuevoCarrito;
+  }
+
+  // Crear una orden
+  async crearOrden(clientId: number): Promise<boolean> {
+    const orderDetails = this.carrito.map(item => ({
+      productsid: item.id,
+      quantity: item.quantity,
+      price_at_order: item.price_product
+    }));
+
+    const order = {
+      clientid: clientId,
+      total: this.carrito.reduce((total, item) => total + (item.price_product * item.quantity), 0),
+      details: orderDetails
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    try {
+      await this.http.post(this.apiUrl, order, { headers }).toPromise();
+      return true;
+    } catch (error) {
+      console.error('Error al crear la orden:', error);
+      return false;
+    }
   }
 }

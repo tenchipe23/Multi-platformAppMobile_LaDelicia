@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../core/services/order.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -7,25 +8,29 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class PedidosPage implements OnInit {
-
   titulo: string = 'Pedidos';
+  orders: any[] = [];
 
-  pedidos = [
-    { id: 1, cliente: 'Juan Pérez', fecha: new Date(), estado: 'Pendiente' },
-    { id: 2, cliente: 'Ana López', fecha: new Date(), estado: 'Completado' },
-    { id: 3, cliente: 'Carlos Gómez', fecha: new Date(), estado: 'Pendiente' },
-  ];
-
-
-
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
+    this.loadOrders();
   }
 
-  verDetalles(pedido: any) {
-    console.log('Ver detalles de pedido', pedido);
-    // Aquí puedes navegar a una página de detalles de pedido.
+  loadOrders() {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this.orderService.getOrdersByClientId(userId).subscribe(
+        (data) => {
+          this.orders = data.orders;
+          console.log('Orders:', this.orders); // Verifica las órdenes en la consola
+        },
+        (error) => {
+          console.error('Error fetching orders:', error);
+        }
+      );
+    } else {
+      console.error('User ID not found in localStorage');
+    }
   }
-
 }

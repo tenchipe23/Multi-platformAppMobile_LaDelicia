@@ -39,6 +39,8 @@ body.dark {
   --ion-icon-color: #ffffff; /* Color de los íconos en modo oscuro */
 }
 
+
+
 /* Aplicar los colores a los elementos */
 ion-content {
   background-color: var(--ion-background-color);
@@ -52,3 +54,5 @@ ion-icon {
 ion-tab-bar {
   background-color: var(--ion-background-color);
 }
+
+

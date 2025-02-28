@@ -25,21 +25,26 @@ export class LoginPage implements OnInit {
       this.presentToast('Por favor, ingrese su usuario/email y contraseña');
       return;
     }
-  
+
     const isEmail = this.isValidEmail(this.userOrEmail);
     let username = '';
     let email = '';
-  
+
     if (isEmail) {
       email = this.userOrEmail;
     } else {
       username = this.userOrEmail;
     }
-  
+
     this.authService.login(username, email, this.password).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response);
-        localStorage.setItem('token', response.token); 
+        localStorage.setItem('authToken', response.token); // Almacena el token
+        if (response.user) {
+          localStorage.setItem('userId', response.user); // Almacena el ID del usuario
+        } else {
+          console.error('User ID not found in response');
+        }
         this.presentToast('Inicio de sesión exitoso');  
         this.router.navigate(['/home']); 
       },
