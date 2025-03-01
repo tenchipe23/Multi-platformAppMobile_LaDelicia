@@ -7,19 +7,30 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="orders.length === 0">
-    <h1>Aun no hay pedidos!!</h1>
+  <h1 style=" text-align: center; margin-top: 20px; color: #666; font-weight: bold; font-size: 20px; margin-bottom: 20px; " >Mis Pedidos</h1>
+
+  <div *ngIf="orders.length === 0" class="empty-orders">
+    <ion-icon name="cart-outline" class="icon-large"></ion-icon>
+    <h2>Aún no hay pedidos</h2>
+    <p>Cuando realices un pedido, aparecerá aquí.</p>
   </div>
 
-  <ion-list *ngIf="orders.length > 0">
-    <ion-item *ngFor="let order of orders">
-      <ion-label>
-        <h2>Orden ID: {{ order.id }}</h2>
-        <p>Fecha: {{ order.date }}</p>
-        <p>Total: {{ order.total }}</p>
-      </ion-label>
-    </ion-item>
+  <ion-list *ngIf="orders.length > 0" class="order-list">
+    <ion-card *ngFor="let order of orders" (click)="goToOrderDetail(order.id)">
+      <ion-card-header>
+        <ion-card-title>Orden #{{ order.id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Estado:  </strong> <span [ngClass]="{'pending-status': order.status === 'pendiente', 'picked-up-status': order.status === 'recogido'}">{{ order.status }}</span></p>
+        <p><strong>Total:</strong> ${{ order.total }}</p>
+        <p><strong>Método de Pago:</strong> {{ order.payment_methodid }}</p>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner="virtual"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <!-- Componente de navegación inferior -->
   <app-tab-bar></app-tab-bar>

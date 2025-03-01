@@ -7,7 +7,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class CartService {
   private carrito: any[] = []; // Almacena los productos en el carrito
-  private apiUrl = 'http://localhost:3100/api/orders/create/order'; // URL de la API
+  private apiUrl = 'http://localhost:3006/api/orders/create/order'; // URL de la API
 
   constructor(private toastController: ToastController, private http: HttpClient) {} // Inyecta HttpClient
 
@@ -70,12 +70,15 @@ export class CartService {
 
     const order = {
       clientid: clientId,
+      payment_methodid: 1, // Método de pago por defecto con ID 1
       total: this.carrito.reduce((total, item) => total + (item.price_product * item.quantity), 0),
       details: orderDetails
     };
 
+    const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
 
     try {

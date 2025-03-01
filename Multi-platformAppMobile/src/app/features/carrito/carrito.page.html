@@ -25,7 +25,8 @@
           <span class="quantity-value">{{ item.quantity }}</span>
           <ion-button fill="outline" (click)="increaseQuantity(item)" [disabled]="item.quantity >= item.stock">
             <ion-icon name="add-circle-outline"></ion-icon>
-          </ion-button>        </div>
+          </ion-button>        
+        </div>
       </ion-label>
       <ion-button color="danger" size="small" (click)="confirmarEliminacion(item)">
         <ion-icon name="trash-outline"></ion-icon>
@@ -38,9 +39,9 @@
         <p>{{ total | currency }}</p> <!-- Muestra el total calculado -->
       </ion-label>
     </ion-item>
-    <ion-button expand="block" color="warning">
+    <ion-button expand="block" color="warning" (click)="crearOrden()">
       <ion-icon name="bag-check-outline" slot="start"></ion-icon>
-      Comprar ahora
+      Hacer pedido
     </ion-button>
   </ion-list>
 
