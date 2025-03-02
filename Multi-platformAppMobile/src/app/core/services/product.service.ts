@@ -12,7 +12,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token'); // Obtén el token del local storage
+    const token = localStorage.getItem('authToken'); // Obtén el token correcto del local storage
     if (!token) {
       throw new Error('Token no encontrado en el local storage');
     }

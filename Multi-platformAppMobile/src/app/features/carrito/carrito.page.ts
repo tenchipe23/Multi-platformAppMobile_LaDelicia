@@ -1,6 +1,9 @@
+// filepath: /c:/Users/herre/OneDrive/Escritorio/UTCV/5 Cuatrimestre/PROYECTO INTEGRADOR/AppGit/Multi-platformAppMobile_LaDelicia/Multi-platformAppMobile/src/app/features/carrito/carrito.page.ts
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../core/services/cart.service'; // Importa el servicio CartService
 import { ToastController, AlertController } from '@ionic/angular'; // Para mostrar notificaciones y alertas
+import { OrderService } from '../../core/services/order.service'; // Importa el servicio OrderService
+import { OrderStateService } from '../../core/services/order-state.service'; // Importa el servicio OrderStateService
 
 @Component({
   selector: 'app-carrito',
@@ -15,7 +18,9 @@ export class CarritoPage implements OnInit {
   constructor(
     private cartService: CartService, 
     private toastController: ToastController,
-    private alertController: AlertController // Inyecta el AlertController
+    private alertController: AlertController, // Inyecta el AlertController
+    private orderService: OrderService, // Inyecta el OrderService
+    private orderStateService: OrderStateService // Inyecta el OrderStateService
   ) {}
 
   ngOnInit() {
@@ -84,22 +89,54 @@ export class CarritoPage implements OnInit {
 
   // Crear una orden
   async crearOrden() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      this.mostrarToast('Error: No se encontró el token de usuario.');
-      return;
-    }
+    const alert = await this.alertController.create({
+      header: 'Confirmar pedido',
+      message: '¿Está seguro de que desea hacer el pedido?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        },
+        {
+          text: 'Aceptar',
+          handler: async () => {
+            const userId = localStorage.getItem('userId');
+            if (!userId) {
+              this.mostrarToast('Error: No se encontró el ID del usuario.');
+              return;
+            }
 
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const clientId = payload.userId;
+            const orderDetails = this.carrito.map(item => ({
+              productsid: item.id,
+              quantity: item.quantity,
+              price_at_order: item.price_product
+            }));
 
-    const ordenCreada = await this.cartService.crearOrden(clientId);
-    if (ordenCreada) {
-      this.mostrarToast('Orden creada exitosamente');
-      this.cartService.limpiarCarrito();
-      this.carrito = [];
-    } else {
-      this.mostrarToast('Error al crear la orden');
-    }
+            const order = {
+              clientid: parseInt(userId),
+              payment_methodid: 1, // Método de pago por defecto con ID 1
+              total: this.total,
+              details: orderDetails
+            };
+
+            this.orderService.createOrder(order).subscribe(
+              (newOrder) => {
+                this.mostrarToast('Orden creada exitosamente');
+                this.cartService.limpiarCarrito();
+                this.carrito = [];
+                this.orderStateService.addOrder(newOrder); // Agrega la nueva orden al estado compartido
+              },
+              (error) => {
+                this.mostrarToast('Error al crear la orden');
+                console.error('Error al crear la orden:', error);
+              }
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

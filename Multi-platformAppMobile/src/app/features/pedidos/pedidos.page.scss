@@ -1,58 +1,41 @@
-/* Estilos generales */
-ion-card {
-    margin: 10px 0;
-    border-radius: 8px;
-  }
-  
-  ion-card-header {
-    background-color: #f4f4f4;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  ion-card-title {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  
-  ion-card-subtitle {
-    font-size: 0.9em;
-    color: #777;
-  }
-  
-  ion-card-content {
-    font-size: 1em;
-  }
-  
-  ion-button {
-    margin-top: 10px;
-    border-radius: 20px;
-  }
-  
-  /* Colores para el estado del pedido */
-  .pending {
-    color: #ff9900;
-  }
-  
-  .completed {
-    color: #28a745;
-  }
-  
-  ion-grid {
-    padding: 10px;
-  }
-  
-  /* Responsividad */
-  @media (max-width: 600px) {
-    ion-card-title {
-      font-size: 1em;
-    }
-  
-    ion-card-subtitle {
-      font-size: 0.8em;
-    }
-  
-    ion-button {
-      font-size: 0.9em;
-    }
-  }
-  
+.empty-orders {
+  text-align: center;
+  margin-top: 50px;
+  color: #666;
+}
+
+.icon-large {
+  font-size: 60px;
+  color: #ccc;
+}
+
+.order-list ion-card {
+  margin: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+ion-card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+ion-card-content p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.pending-status {
+  color: white;
+  background-color: orange;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.picked-up-status {
+  color: white;
+  background-color: green;
+  padding: 5px;
+  border-radius: 5px;
+}

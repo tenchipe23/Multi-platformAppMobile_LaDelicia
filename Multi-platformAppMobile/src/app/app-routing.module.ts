@@ -75,7 +75,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'producto-detalle/:id', // Agrega el parámetro dinámico :id
+    path: 'producto-detalle/:id',
     loadChildren: () => import('./features/producto-detalle/producto-detalle.module').then(m => m.ProductoDetallePageModule),
     canActivate: [AuthGuard]
   },
@@ -89,7 +89,17 @@ const routes: Routes = [
     loadChildren: () => import('./features/auth/register/register.module').then(m => m.RegisterPageModule),
     canActivate: [RedirectGuard],
     data: { hideMenu: true }
+  },
+  {
+    path: 'detalle-pedido/:id',
+    loadChildren: () => import('./features/detalle-pedido/detalle-pedido.module').then(m => m.DetallePedidoPageModule),
+    canActivate: [AuthGuard]
+  },  {
+    path: 'qr-code',
+    loadChildren: () => import('./features/qr-code/qr-code.module').then( m => m.QrCodePageModule)
   }
+
+
 ];
 
 @NgModule({
