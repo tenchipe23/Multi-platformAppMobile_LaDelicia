@@ -7,6 +7,10 @@ ion-content {
     height: 100vh; /* Ocupar toda la pantalla */
 }
 
+ion-input {
+    color: #000; /* Asegura que el texto sea negro */
+}
+
 /* Contenedor centrado */
 .container {
     background: rgba(255, 255, 255, 0.9);
@@ -42,6 +46,10 @@ ion-content {
     border-radius: 8px;
     margin-bottom: 15px;
     transition: all 0.3s ease-in-out;
+}
+
+.input-field ion-input {
+    color: #000; /* Asegura que el texto dentro de los campos de entrada sea negro */
 }
 
 /* Botón de ingresar */

@@ -1,29 +1,30 @@
 .empty-orders {
   text-align: center;
   margin-top: 50px;
-  color: #666;
+  color: var(--ion-text-color);
 }
 
 .icon-large {
   font-size: 60px;
-  color: #ccc;
+  color: var(--ion-icon-color);
 }
 
 .order-list ion-card {
   margin: 10px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px var(--ion-border-color);
 }
 
 ion-card-title {
   font-size: 1.2em;
   font-weight: bold;
+  color: var(--ion-text-color);
 }
 
 ion-card-content p {
   margin: 5px 0;
   font-size: 1em;
-  color: #333;
+  color: var(--ion-text-color);
 }
 
 .pending-status {

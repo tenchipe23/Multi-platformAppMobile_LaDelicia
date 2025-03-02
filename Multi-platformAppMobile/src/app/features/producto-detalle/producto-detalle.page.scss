@@ -1,41 +1,33 @@
 /* producto-detalle.page.scss */
 .image-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .product-image {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .details-container {
-    padding: 0 16px;
-  }
-  
-  .product-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--ion-color-dark);
-    margin-bottom: 8px;
-  }
-  
-  .product-price {
-    font-size: 20px;
-    color: var(--ion-color-success);
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  
-  .quantity-and-cart {
-    display: block;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-  
-/* producto-detalle.page.scss */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-image {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-container {
+  padding: 0 16px;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--ion-text-color);
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  color: var(--ion-color-success);
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
 .quantity-and-cart {
   display: flex;
   flex-direction: column;
@@ -51,7 +43,7 @@
 
 .quantity-selector b {
   font-size: 1rem;
-  color: var(--ion-color-dark);
+  color: var(--ion-text-color);
 }
 
 .quantity-selector ion-button {
@@ -70,7 +62,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0 10px;
-  color: var(--ion-color-dark);
+  color: var(--ion-text-color);
 }
 
 .action-buttons {
@@ -92,31 +84,32 @@
 .action-buttons ion-button[fill="outline"] {
   --border-width: 2px;
   --border-color: var(--ion-color-medium);
-  --color: var(--ion-color-dark);
+  --color: var(--ion-text-color);
 }
-  .description-section,
-  .additional-details {
-    margin-bottom: 24px;
-  }
-  
-  .description-section h2,
-  .additional-details h2 {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--ion-color-dark);
-    margin-bottom: 8px;
-  }
-  
-  .description-section p,
-  .additional-details p {
-    font-size: 16px;
-    color: var(--ion-color-medium);
-    line-height: 1.5;
-  }
-  
-  .no-product-message {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 18px;
-    color: var(--ion-color-medium);
-  }
+
+.description-section,
+.additional-details {
+  margin-bottom: 24px;
+}
+
+.description-section h2,
+.additional-details h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--ion-text-color);
+  margin-bottom: 8px;
+}
+
+.description-section p,
+.additional-details p {
+  font-size: 1rem;
+  color: var(--ion-text-color);
+  line-height: 1.5;
+}
+
+.no-product-message {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.2rem;
+  color: var(--ion-text-color);
+}
