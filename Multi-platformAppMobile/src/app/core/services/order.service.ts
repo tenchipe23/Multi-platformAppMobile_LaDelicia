@@ -7,8 +7,8 @@ import { OrderStateService } from './order-state.service';
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:3006/api/orders';
-  private productUrl = 'http://localhost:3003/api/products';
+  private baseUrl = 'http://localhost:3100/api/orders';
+  private productUrl = 'http://localhost:3100/api/products';
 
   constructor(private http: HttpClient, private orderStateService: OrderStateService) {}
 
@@ -30,6 +30,16 @@ export class OrderService {
     });
 
     return this.http.post<any>(`${this.baseUrl}/create/order`, order, { headers });
+  }
+
+  updateOrderStatus(orderId: string, status: string): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.patch<any>(`${this.baseUrl}/updateStatus/${orderId}`, { status }, { headers });
   }
 
   getProductById(productId: string): Observable<any> {

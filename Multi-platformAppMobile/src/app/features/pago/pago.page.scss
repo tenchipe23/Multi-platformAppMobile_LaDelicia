@@ -1,0 +1,146 @@
+/* Estilos generales de la Splash Screen */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white; /*Fondo blanco */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black; /* Texto en negro */
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 9999;
+    padding-bottom: 50px;
+  }
+  
+  /* Splash Screen del Código QR */
+  .qr-screen {
+    background: white !important; /* Fondo blanco */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Contenedor del Código QR */
+  .qr-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 320px; /*  Más grande */
+  }
+  
+  /*  Imagen del Código QR */
+  .qr-image {
+    width: 250px; /*  Más grande */
+    height: 250px;
+    margin-bottom: 10px;
+  }
+  
+  /*  Texto del QR (ahora está fuera del recuadro) */
+  .qr-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-top: 20px; /* Espaciado entre el recuadro y el texto */
+  }
+  
+  /* Botón Siguiente */
+  .qr-button {
+    background: black !important; /* Fondo negro */
+    color: white !important;
+    width: 90%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Splash Screen de Pago con Tarjeta */
+  .tarjeta-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white; /*  Fondo blanco */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto; /* Habilita scroll en pantallas pequeñas */
+  }
+  
+  /* Contenedor del formulario */
+  .tarjeta-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Título */
+  .tarjeta-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: black;
+  }
+  
+  /* Botón Pagar */
+  .boton-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Botón general */
+  .boton-redondo {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  
+  /* Estilos para el botón "Siguiente" */
+  .siguiente-button {
+    width: 100%;
+    height: 50px;
+    font-size: 55px;
+    font-weight: 1050; 
+    border-radius: 10px;
+    background: black !important; 
+    color: yellow !important; 
+    text-transform: uppercase; 
+    border: 35px solid yellow !important; 
+  }
+  /* ✅ Estilos para hacer el botón más grande y centrado */
+  .boton-grande {
+    width: 80%; 
+    height: 60px; 
+    font-size: 20px; 
+    font-weight: bold; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px; 
+    border-radius: 10px; 
+  }

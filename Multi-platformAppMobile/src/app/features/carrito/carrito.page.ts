@@ -4,6 +4,7 @@ import { CartService } from '../../core/services/cart.service'; // Importa el se
 import { ToastController, AlertController } from '@ionic/angular'; // Para mostrar notificaciones y alertas
 import { OrderService } from '../../core/services/order.service'; // Importa el servicio OrderService
 import { OrderStateService } from '../../core/services/order-state.service'; // Importa el servicio OrderStateService
+import { NavController } from '@ionic/angular'; // Importa NavController
 
 @Component({
   selector: 'app-carrito',
@@ -20,7 +21,8 @@ export class CarritoPage implements OnInit {
     private toastController: ToastController,
     private alertController: AlertController, // Inyecta el AlertController
     private orderService: OrderService, // Inyecta el OrderService
-    private orderStateService: OrderStateService // Inyecta el OrderStateService
+    private orderStateService: OrderStateService, // Inyecta el OrderStateService
+    private navCtrl: NavController // Inyecta NavController
   ) {}
 
   ngOnInit() {
@@ -88,55 +90,32 @@ export class CarritoPage implements OnInit {
   }
 
   // Crear una orden
-  async crearOrden() {
-    const alert = await this.alertController.create({
-      header: 'Confirmar pedido',
-      message: '¿Está seguro de que desea hacer el pedido?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary'
-        },
-        {
-          text: 'Aceptar',
-          handler: async () => {
-            const userId = localStorage.getItem('userId');
-            if (!userId) {
-              this.mostrarToast('Error: No se encontró el ID del usuario.');
-              return;
-            }
-
-            const orderDetails = this.carrito.map(item => ({
-              productsid: item.id,
-              quantity: item.quantity,
-              price_at_order: item.price_product
-            }));
-
-            const order = {
-              clientid: parseInt(userId),
-              payment_methodid: 1, // Método de pago por defecto con ID 1
-              total: this.total,
-              details: orderDetails
-            };
-
-            this.orderService.createOrder(order).subscribe(
-              (newOrder) => {
-                this.mostrarToast('Orden creada exitosamente');
-                this.cartService.limpiarCarrito();
-                this.carrito = [];
-                this.orderStateService.addOrder(newOrder); // Agrega la nueva orden al estado compartido
-              },
-              (error) => {
-                this.mostrarToast('Error al crear la orden');
-                console.error('Error al crear la orden:', error);
-              }
-            );
-          }
-        }
-      ]
-    });
-
-    await alert.present();
+ // Crear una orden
+ async crearOrden() {
+  const userId = localStorage.getItem('userId');
+  if (!userId) {
+    this.mostrarToast('Error: No se encontró el ID del usuario.');
+    return;
   }
+
+  const orderDetails = this.carrito.map(item => ({
+    productsid: item.id,
+    quantity: item.quantity,
+    price_at_order: item.price_product
+  }));
+
+  const order = {
+    clientid: parseInt(userId),
+    payment_methodid: 1, // Método de pago por defecto con ID 1
+    total: this.total,
+    details: orderDetails
+  };
+
+  // Navega a la página de pago con los datos del carrito
+  this.navCtrl.navigateForward('/pago', {
+    queryParams: {
+      order: JSON.stringify(order)
+    }
+  });
+}
 }

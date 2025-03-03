@@ -23,14 +23,19 @@ export class ProductosPage implements OnInit {
   loadProducts() {
     this.productService.getAllProducts().subscribe(
       (data: any) => {
+        console.log('Productos cargados:', data); // Verifica la respuesta de los productos
         this.productos = data;
         this.filteredProductos = data; // Inicializa filteredProductos con los productos cargados
       },
       (error) => {
         console.error('Error al cargar los productos:', error);
+        if (error.error) {
+          console.error('Detalles del error:', error.error); // Muestra detalles adicionales del error
+        }
       }
     );
   }
+  
 
   // Cargar más productos (infinite scroll)
   loadMoreProducts(event: any) {

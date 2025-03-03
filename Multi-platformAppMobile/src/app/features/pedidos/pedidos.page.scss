@@ -28,14 +28,21 @@ ion-card-content p {
 
 .pending-status {
   color: white;
-  background-color: orange;
+  background-color: rgb(246, 210, 32);
   padding: 5px;
   border-radius: 5px;
 }
 
-.picked-up-status {
+.ready-status {
   color: white;
-  background-color: green;
+  background-color: rgb(39, 150, 39);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.canceled-status {
+  color: white;
+  background-color: rgb(225, 51, 51);
   padding: 5px;
   border-radius: 5px;
 }

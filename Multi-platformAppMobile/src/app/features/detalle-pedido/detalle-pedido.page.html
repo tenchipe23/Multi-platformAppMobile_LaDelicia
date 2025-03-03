@@ -18,7 +18,11 @@
     <ion-card>
       <ion-card-header>
         <ion-card-title>Orden #{{ order.id }}</ion-card-title>
-        <ion-chip [ngClass]="{'pending-status': order.status === 'pendiente', 'picked-up-status': order.status === 'recogido'}">{{ order.status }}</ion-chip>
+        <ion-chip [ngClass]="{
+          'pending-status': order.status === 'pendiente',
+          'ready-status': order.status === 'listo para recoger',
+          'canceled-status': order.status === 'cancelado'
+        }">{{ order.status }}</ion-chip>
       </ion-card-header>
       <ion-card-content>
         <p><strong>Cliente ID:</strong> {{ order.clientid }}</p>

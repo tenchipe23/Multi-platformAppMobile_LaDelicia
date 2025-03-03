@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../../core/services/order.service';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -48,17 +50,25 @@ export class DetallePedidoPage implements OnInit {
   }
 
   loadProductDetails() {
-    this.order.details.forEach((detail: any) => {
-      this.orderService.getProductById(detail.productsid).subscribe(
-        (product) => {
+    const productDetailsObservables = this.order.details.map((detail: any) => {
+      return this.orderService.getProductById(detail.productsid).pipe(
+        map((product) => {
           detail.productName = product.name;
           detail.productImage = product.image;
-        },
-        (error) => {
-          console.error('Error fetching product details:', error);
-        }
+          return detail;
+        })
       );
     });
+  
+    forkJoin(productDetailsObservables).subscribe(
+      (updatedDetails) => {
+        this.order.details = updatedDetails;
+        console.log('Updated order details:', this.order.details); // Verifica los detalles actualizados en la consola
+      },
+      (error) => {
+        console.error('Error fetching product details:', error);
+      }
+    );
   }
 
   openQrPage() {

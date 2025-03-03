@@ -97,6 +97,10 @@ const routes: Routes = [
   },  {
     path: 'qr-code',
     loadChildren: () => import('./features/qr-code/qr-code.module').then( m => m.QrCodePageModule)
+  },
+  {
+    path: 'pago',
+    loadChildren: () => import('./features/pago/pago.module').then( m => m.PagoPageModule)
   }
 
 

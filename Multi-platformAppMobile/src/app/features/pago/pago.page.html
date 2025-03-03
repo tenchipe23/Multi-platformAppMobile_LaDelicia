@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <!-- Botón de regresar -->
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Finalizar Compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Detalle de compra -->
+  <div *ngIf="order">
+    <ion-card *ngFor="let item of order.details">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3">
+              <ion-img [src]="item.image" alt="{{ item.name_product }}"></ion-img>
+            </ion-col>
+            <ion-col>
+              <ion-text color="dark"><strong>{{ item.name_product }}</strong></ion-text>
+            </ion-col>
+            <ion-col size="auto" style="display: flex; flex-direction: column; align-items: flex-end; justify-content: center;">
+              <ion-text color="dark"><strong>Cantidad: {{ item.quantity }} pza</strong></ion-text>
+              <ion-text color="dark"><strong>Subtotal: {{ item.price_at_order * item.quantity | currency }}</strong></ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list>
+      <!-- Método de pago -->
+      <ion-item>
+        <ion-label position="stacked">Método de Pago:</ion-label>
+        <ion-select [(ngModel)]="metodoPago">
+          <ion-select-option value="efectivo">Efectivo</ion-select-option>
+          <ion-select-option value="tarjeta">Tarjeta</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Fecha -->
+      <ion-item>
+        <ion-label position="stacked">Fecha:</ion-label>
+        <ion-input type="text" [value]="todayDate" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Descuento:</ion-label>
+        <ion-text>N/A</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Subtotal:</ion-label>
+        <ion-text>{{ order.total | currency }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label><strong>Total:</strong></ion-label>
+        <ion-text><strong>{{ order.total | currency }}</strong></ion-text>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" fill="outline" color="warning" class="change-photo-button" (click)="confirmarPago()">Confirmar Pago</ion-button>
+  </div>
+</ion-content>
