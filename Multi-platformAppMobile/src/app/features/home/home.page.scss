@@ -1,0 +1,356 @@
+/* Estilos generales */
+ion-content {
+  --background: var(--background-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Banner hero minimalista */
+.hero-banner {
+  height: 200px;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+              url('../../../assets/img/Fondocanastadepan.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.hero-content p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: white;
+  margin-bottom: 16px;
+}
+/* Sección de productos destacados */
+.productos-destacados {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.productos-destacados h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.productos-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.producto {
+  width: 30%;
+  text-align: center;
+}
+
+.producto ion-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.producto p {
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+/* Sección de acceso rápido */
+.acceso-rapido {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+/* Carrusel de comentarios - NUEVO */
+.testimonials-section {
+  padding: 0 16px;
+  margin-bottom: 32px;
+  margin-top: 40px;
+}
+
+.testimonials-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.testimonials-carousel {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.testimonial-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.9s ease, transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.testimonial-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.testimonial-slide:not(.active) {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.testimonial-content {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--testimonial-shadow);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonial-stars {
+  color: #FFD700;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.testimonial-content p {
+  font-style: italic;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  margin-top: 10px;
+  color: var(--accent-color);
+}
+
+.testimonial-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.testimonial-indicators span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.testimonial-indicators span.active {
+  background-color: var(--accent-color);
+}
+
+/* Sección de productos destacados */
+.featured-section {
+  padding: 0 16px;
+  margin-bottom: 32px;
+}
+
+.featured-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.product-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scrollbar-width: none; /* Para Firefox */
+}
+
+.product-scroll::-webkit-scrollbar {
+  display: none; /* Para Chrome y Safari */
+}
+
+.product-item {
+  min-width: 160px;
+  background-color: #e5e5e5;
+  overflow: hidden;
+  border-radius: 10px;
+  padding-bottom: 5px;
+}
+
+.product-image {
+  height: 120px;
+}
+
+.product-image ion-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info h3 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.price {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+/* Card final con botón */
+.view-all-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #adadad;
+  color: white;
+  min-width: 180px;
+  padding: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.view-all-card:hover {
+  background-color: #8b8b8b;
+}
+
+/* Botón dentro del card */
+.view-all-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.view-all-button ion-icon {
+  font-size: 3rem;
+}
+
+/* Acciones rápidas */
+.quick-access {
+  padding: 16px;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .categories-section {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .category-card {
+    width: 48%;
+    margin-bottom: 12px;
+  }
+  
+  .testimonial-content {
+    padding: 15px;
+    width: 95%;
+  }
+}
+
+
+.blog-section {
+  padding: 20px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.blog-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.blog-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.blog-card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.blog-card:hover {
+  transform: scale(1.05);
+}
+
+.blog-card ion-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.blog-info {
+  padding: 15px;
+  text-align: left;
+}
+
+.blog-info h3 {
+  font-size: 1.2rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.blog-info p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.blog-info ion-button {
+  font-size: 0.85rem;
+  width: 100%;
+}

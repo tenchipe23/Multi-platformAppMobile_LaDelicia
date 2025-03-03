@@ -1,0 +1,166 @@
+<app-header [titulo]="titulo"></app-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Banner minimalista -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>Panadería La Delicia</h1>
+      <p>Pan fresco y delicioso todos los días</p>
+      <ion-button fill="outline" shape="round" color="light" routerLink="/productos">
+        Explorar
+      </ion-button>
+    </div>
+  </div>
+  
+  <!-- Sección de productos destacados -->
+  <div class="productos-destacados">
+    <h3>Ofrecemos</h3>
+    <div class="productos-container">
+      <div class="producto">
+        <ion-img src="../../../assets/img/fresco.jpg"></ion-img>
+        <p>Pan Fresco</p>
+      </div>
+      <div class="producto">
+        <ion-img src="../../../assets/img/pastelmod.jpeg"></ion-img>
+        <p>Deliciosa Pasteleria</p>
+      </div>
+      <div class="producto">
+        <ion-img src="../../../assets/img/panM.jpg"></ion-img>
+        <p>Pan Para Cada Temporada</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Sección destacada -->
+  <div class="featured-section">
+    <h2>Nuestros productos</h2>
+    <div class="product-scroll">
+      <div class="product-item" *ngFor="let producto of productos" [routerLink]="['/producto-detalle', producto.id]">
+        <div class="product-image">
+          <ion-img [src]="producto.image"></ion-img>
+        </div>
+        <div class="product-info">
+          <h3>{{ producto.name_product }}</h3>
+          <p class="price">{{ producto.price_product | currency }}</p>
+         </div>
+      </div>
+      <div class="product-item view-all-card">
+        <button [routerLink]="['/productos']" class="view-all-button">
+          Ver todos los productos <ion-icon name="arrow-forward-outline"></ion-icon> 
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Sección de Blog -->
+<div class="blog-section">
+  <h2>Últimas Noticias y Recetas</h2>
+  <div class="blog-container">
+    <div class="blog-card" *ngFor="let post of blogPosts" [routerLink]="['/blog', post.id]">
+      <ion-img [src]="post.image"></ion-img>
+      <div class="blog-info">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <ion-button href="https://www.ejemplo.com/articulo" target="_blank" fill="outline" size="small" color="primary">
+          Leer más
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Carrusel de comentarios -->
+  <div class="testimonials-section">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <div class="testimonials-carousel">
+      <div class="testimonial-slide" [ngClass]="{'active': currentSlide === 0}">
+        <div class="testimonial-content">
+          <div class="testimonial-stars">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>"El mejor pan que he probado. Siempre fresco y con ese sabor a tradición que tanto me gusta."</p>
+          <div class="testimonial-author">
+            <span>María González</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-slide" [ngClass]="{'active': currentSlide === 1}">
+        <div class="testimonial-content">
+          <div class="testimonial-stars">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-half"></ion-icon>
+          </div>
+          <p>"Sus pasteles son una delicia, perfectos para cualquier ocasión especial. La atención al cliente es excelente."</p>
+          <div class="testimonial-author">
+            <span>Carlos Rodríguez</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-slide" [ngClass]="{'active': currentSlide === 2}">
+        <div class="testimonial-content">
+          <div class="testimonial-stars">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>"Las medialunas son increíbles. Vengo todas las mañanas por ellas antes de ir al trabajo."</p>
+          <div class="testimonial-author">
+            <span>Lucía Martínez</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-indicators">
+      <span [ngClass]="{'active': currentSlide === 0}" (click)="setSlide(0)"></span>
+      <span [ngClass]="{'active': currentSlide === 1}" (click)="setSlide(1)"></span>
+      <span [ngClass]="{'active': currentSlide === 2}" (click)="setSlide(2)"></span>
+    </div>
+  </div>
+
+  
+  <!-- Sección de acceso rápido -->
+  <section class="quick-access">
+    <h3 style="display: flex; justify-content: center;"><b>Acceso Rápido</b></h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="primary" [routerLink]="['/pedidos']">
+            <ion-icon name="basket" slot="start"></ion-icon> Mis Pedidos
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="secondary" [routerLink]="['/mi-perfil']">
+            <ion-icon name="person" slot="start"></ion-icon> Mi Cuenta
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="tertiary" [routerLink]="['/ayuda']">
+            <ion-icon name="help" slot="start"></ion-icon> Ayuda
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" size-md="3">
+          <ion-button expand="full" color="danger" [routerLink]="['/contacto']">
+            <ion-icon name="mail" slot="start"></ion-icon> Contacto
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner="virtual"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<app-tab-bar></app-tab-bar>

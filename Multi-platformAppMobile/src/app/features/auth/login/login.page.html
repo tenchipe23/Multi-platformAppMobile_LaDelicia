@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <div id="container" class="container animate-fade-in"> 
+    <div class="title">Panadería La Delicia</div> 
+    
+    <div class="logo1">
+      <img src="assets/icons/Imagen1.png" alt="Logo Panadería La Delicia" class="logo">
+    </div>
+
+    <div class="container2">
+      <form (ngSubmit)="login()">
+        <ion-input [(ngModel)]="userOrEmail" name="userOrEmail" class="input-field fade-in" 
+          type="text" color="medium" fill="outline" label="Usuario o Correo electrónico" 
+          labelPlacement="floating" required></ion-input>
+
+        <ion-input [(ngModel)]="password" name="password" class="input-field fade-in" 
+          type="password" color="medium" fill="outline" label="Contraseña" 
+          labelPlacement="floating" maxlength="16" required></ion-input>
+
+        <ion-button class="button-ingresar fade-in" expand="block" type="submit">Ingresar</ion-button>
+      </form>
+    </div>
+
+    <a href="javascript:void(0)" class="register-link fade-in" (click)="goToRegister()">¿No tienes una cuenta? Regístrate aquí</a>
+  </div>
+</ion-content>

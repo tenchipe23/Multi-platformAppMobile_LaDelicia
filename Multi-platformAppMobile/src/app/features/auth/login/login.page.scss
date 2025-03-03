@@ -1,0 +1,93 @@
+/* Fondo con degradado */
+ion-content {
+    display: flex;
+    --ion-background-color: linear-gradient(135deg, #f7cda6, #ffc364);
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupar toda la pantalla */
+}
+
+/* Contenedor centrado */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0.2, 0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    transition: all 0.3s ease-in-out;
+    margin-top: 50%;
+    margin-left: 20px;
+}
+
+/* Logo */
+.logo1 img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+/* Título */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Campos de entrada */
+.input-field {
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Botón de ingresar */
+.button-ingresar {
+    background: #f67280;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover del botón */
+.button-ingresar:hover {
+    background: #f8c291;
+}
+
+/* Link de registro */
+.register-link {
+    display: block;
+    margin-top: 15px;
+    color: rgb(65, 65, 255);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.register-link:hover {
+    color: #f67280;
+}
+
+/* Ajuste en la animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}

@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/pedidos']"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Detalle del Pedido</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="order" class="order-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Orden #{{ order.id }}</ion-card-title>
+        <ion-chip [ngClass]="{
+          'pending-status': order.status === 'pendiente',
+          'ready-status': order.status === 'listo para recoger',
+          'canceled-status': order.status === 'cancelado'
+        }">{{ order.status }}</ion-chip>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Cliente ID:</strong> {{ order.clientid }}</p>
+        <p><strong>Método de Pago:</strong> {{ order.payment_methodid }}</p>
+        <p><strong>Total:</strong> ${{ order.total }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <h3 class="details-title">Detalles del Pedido</h3>
+    <ion-list>
+      <ion-card *ngFor="let detail of order.details" class="detail-card">
+        <ion-card-content class="detail-content">
+          <ion-img [src]="detail.productImage" alt="{{ detail.productName }}" class="product-image"></ion-img>
+          <div class="product-details">
+            <p><strong>Producto:</strong> {{ detail.productName }}</p>
+            <p><strong>Producto ID:</strong> {{ detail.productsid }}</p>
+            <p><strong>Cantidad:</strong> {{ detail.quantity }}</p>
+            <p><strong>Precio Unitario:</strong> ${{ detail.price_at_order }}</p>
+            <p><strong>Subtotal:</strong> ${{ detail.subtotal }}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="openQrPage()">
+      <ion-icon name="qr-code-outline" slot="start"></ion-icon>
+      Mostrar Código QR
+    </ion-button>
+  </div>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner="virtual"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

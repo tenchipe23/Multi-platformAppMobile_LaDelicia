@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/productos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Imagen del producto -->
+  <div class="image-container" *ngIf="producto">
+    <img [src]="producto.image" alt="{{ producto.name_product }}" class="product-image" />
+  </div>
+
+  <!-- Detalles del producto -->
+  <div class="details-container" *ngIf="producto">
+    <h1 class="product-name">{{ producto.name_product }}</h1>
+    <p class="product-price">{{ producto.price_product | currency }}</p>
+
+    <!-- Selector de cantidad y botón de agregar al carrito -->
+    <div class="quantity-and-cart">
+      <div class="quantity-selector">
+        <b style="margin-right: 10px;">Cantidad:</b>
+        <ion-button fill="outline" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        <span class="quantity-value">{{ quantity }}</span>
+        <ion-button fill="outline" (click)="increaseQuantity()" [disabled]="quantity >= producto.stock">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="action-buttons">
+        <ion-button expand="block" color="warning">
+          <ion-icon name="bag-check-outline" slot="start"></ion-icon>
+          Comprar ahora
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="medium" (click)="confirmarAgregarAlCarrito()">
+          <ion-icon name="cart" slot="start"></ion-icon>
+          Agregar al carrito
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Descripción del producto -->
+    <div class="description-section">
+      <h2>Ingredientes</h2>
+      <p>{{ producto.ingredients }}</p>
+    </div>
+
+    <!-- Detalles adicionales -->
+    <div class="additional-details">
+      <h2>Detalles adicionales</h2>
+      <p><strong>Tiempo de horneado:</strong> {{ producto.baking_time.minutes }} minutos</p>
+      <p><strong>Stock disponible:</strong> {{ producto.stock }}</p>
+    </div>
+  </div>
+
+  <!-- Mensaje si no se encuentra el producto -->
+  <div *ngIf="!producto" class="no-product-message">
+    <p>No se encontraron detalles del producto.</p>
+  </div>
+</ion-content>
