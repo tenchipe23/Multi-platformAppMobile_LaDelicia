@@ -7,6 +7,10 @@ ion-content {
   height: 100vh; /* Ocupar toda la pantalla */
 }
 
+ion-input {
+  color: #000; /* Asegura que el texto sea negro */
+}
+
 /* Contenedor centrado */
 .container {
   background: rgba(255, 255, 255, 0.9);

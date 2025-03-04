@@ -12,8 +12,7 @@ h1, h2, h3, p {
 /* Banner hero minimalista */
 .hero-banner {
   height: 200px;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-              url('../../../assets/img/Fondocanastadepan.jpg') no-repeat center center;
+  background: url('../../../assets/img/Fondocanastadepan.jpg') no-repeat center center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -124,7 +123,7 @@ h1, h2, h3, p {
 }
 
 .testimonial-content {
-  background-color: white;
+  background-color: var(--ion-background-color);
   border-radius: var(--border-radius);
   padding: 20px;
   box-shadow: var(--testimonial-shadow);
@@ -200,10 +199,12 @@ h1, h2, h3, p {
 
 .product-item {
   min-width: 160px;
-  background-color: #e5e5e5;
+  background-color: var(--ion-background-color);
   overflow: hidden;
   border-radius: 10px;
   padding-bottom: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+              0 2px 4px rgba(0, 1, 2, 0.3);
 }
 
 .product-image {
@@ -220,6 +221,7 @@ h1, h2, h3, p {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  color: var(--ion-text-color);
 }
 
 .product-info h3 {
@@ -239,7 +241,7 @@ h1, h2, h3, p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #adadad;
+  background-color: var(--ion-background-color);
   color: white;
   min-width: 180px;
   padding: 20px;
@@ -259,7 +261,7 @@ h1, h2, h3, p {
   padding: 10px 15px;
   font-size: 1rem;
   font-weight: 600;
-  color: white;
+  color: var(--ion-text-color);
   background: none;
   border: none;
   cursor: pointer;
@@ -297,12 +299,12 @@ h1, h2, h3, p {
 .blog-section {
   padding: 20px;
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: var(--ion-background-color);
 }
 
 .blog-section h2 {
   font-size: 1.8rem;
-  color: #333;
+  color: var(--ion-text-color);
   margin-bottom: 15px;
 }
 
@@ -315,10 +317,10 @@ h1, h2, h3, p {
 
 .blog-card {
   width: 300px;
-  background: white;
+  background: var(--ion-background-color);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--ion-border-color);
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
 }
@@ -336,17 +338,18 @@ h1, h2, h3, p {
 .blog-info {
   padding: 15px;
   text-align: left;
+  color: var(--ion-text-color);
 }
 
 .blog-info h3 {
   font-size: 1.2rem;
-  color: #222;
+  color: var(--ion-text-color);
   margin-bottom: 10px;
 }
 
 .blog-info p {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--ion-text-color);
   margin-bottom: 10px;
 }
 

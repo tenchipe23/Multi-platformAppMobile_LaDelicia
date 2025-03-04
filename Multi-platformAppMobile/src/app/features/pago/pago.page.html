@@ -59,8 +59,17 @@
         <ion-label><strong>Total:</strong></ion-label>
         <ion-text><strong>{{ order.total | currency }}</strong></ion-text>
       </ion-item>
+
+      <!-- Tiempo de expiración -->
+      <ion-item>
+        <ion-label position="stacked">Tiempo de Expiración:</ion-label>
+        <ion-select [(ngModel)]="tiempoExpiracion">
+          <ion-select-option value="30min">30 minutos</ion-select-option>
+          <ion-select-option value="1hora">1 hora</ion-select-option>
+        </ion-select>
+      </ion-item>
     </ion-list>
 
     <ion-button expand="block" fill="outline" color="warning" class="change-photo-button" (click)="confirmarPago()">Confirmar Pago</ion-button>
   </div>
-</ion-content>
+</ion-content>  

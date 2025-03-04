@@ -101,7 +101,9 @@ export class CarritoPage implements OnInit {
   const orderDetails = this.carrito.map(item => ({
     productsid: item.id,
     quantity: item.quantity,
-    price_at_order: item.price_product
+    price_at_order: item.price_product,
+    image: item.image, // Asegúrate de incluir la URL de la imagen
+    name_product: item.name_product // Asegúrate de incluir el nombre del producto
   }));
 
   const order = {

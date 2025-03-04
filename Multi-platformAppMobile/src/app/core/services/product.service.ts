@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3100/api/products/get/products'; // Nueva URL de la API
+  private apiUrl = `${environment.API_URL}/products/get/products`; // Nueva URL de la API
 
   constructor(private http: HttpClient) { }
 
@@ -19,37 +20,36 @@ export class ProductService {
     }
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json' ,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json' // Se añade el header de Content-Type
     });
   }
-
-  getAllProducts(): Observable<any> {
-    return this.http.get(this.apiUrl, { 
-      
-      headers: this.getHeaders()
-
-      }).pipe(
-      catchError((error) => {
-        console.error('Error al obtener los productos:', error);
-        return throwError(error);
-      }),
-      tap((response) => {
-        console.log('Respuesta de la API:', response); // Aquí puedes verificar si la respuesta es correcta
-      })
-    );
-  }
   
+getAllProducts(): Observable<any> {
+  return this.http.get(this.apiUrl, { 
+    headers: this.getHeaders()  // Aquí se utiliza el método getHeaders para obtener las cabeceras
+  }).pipe(
+    catchError((error) => {
+      console.error('Error al obtener los productos:', error);
+      return throwError(error);
+    }),
+    tap((response) => {
+      console.log('Respuesta de la API:', response); // Aquí puedes verificar si la respuesta es correcta
+    })
+  );
+}
 
-  getProductById(id: number): Observable<any> {
-    const url = `http://localhost:3100/api/products/get/products/by/id/${id}`;
-    return this.http.get(url, { headers: this.getHeaders() }).pipe(
-      catchError((error) => {
-        console.error('Error al obtener el producto:', error);
-        return throwError(error);
-      })
-    );
-  }
+getProductById(id: number): Observable<any> {
+  const url = `${environment.API_URL}/products/get/products/by/id/${id}`;
+  return this.http.get(url, { 
+    headers: this.getHeaders()  // Aquí también se utiliza el método getHeaders
+  }).pipe(
+    catchError((error) => {
+      console.error('Error al obtener el producto:', error);
+      return throwError(error);
+    })
+  );
+}
+
 
   createProduct(product: any): Observable<any> {
     return this.http.post(this.apiUrl, product, { headers: this.getHeaders() }).pipe(

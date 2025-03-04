@@ -13,6 +13,7 @@ import { CartService } from '../../core/services/cart.service'; // Importa el Ca
 export class PagoPage implements OnInit {
   order: any;
   metodoPago: string = 'efectivo'; // Método de pago por defecto
+  tiempoExpiracion: string = '30min'; // Tiempo de expiración por defecto
   todayDate: string = new Date().toLocaleDateString(); // Fecha actual
 
   constructor(
@@ -34,6 +35,7 @@ export class PagoPage implements OnInit {
   confirmarPago() {
     this.order.payment_methodid = this.metodoPago === 'tarjeta' ? 2 : 1; // Actualiza el método de pago
     this.order.status = 'pendiente'; // Establece el estado de la orden como pendiente
+    this.order.expiration_time = this.calcularTiempoExpiracion(this.tiempoExpiracion); // Añade el tiempo de expiración a la orden
   
     this.orderService.createOrder(this.order).subscribe(
       (newOrder) => {
@@ -48,6 +50,16 @@ export class PagoPage implements OnInit {
         console.error('Error al crear la orden:', error);
       }
     );
+  }
+
+  calcularTiempoExpiracion(tiempoExpiracion: string): string {
+    const now = new Date();
+    if (tiempoExpiracion === '30min') {
+      now.setMinutes(now.getMinutes() + 30);
+    } else if (tiempoExpiracion === '1hora') {
+      now.setHours(now.getHours() + 1);
+    }
+    return now.toISOString();
   }
 
   async mostrarConfirmacion(orderId: string) {

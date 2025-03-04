@@ -1,28 +1,116 @@
-.empty-cart {
-    text-align: center;
-    margin-top: 50%;
-  
-    ion-icon {
-      font-size: 80px;
-      color: var(--ion-color-medium);
-    }
-  
+/* Estilos para el contenido del carrito */
+ion-content {
+  background-color: var(--ion-background-color);
+  color: var(--ion-text-color);
+  padding: 16px;
+}
+
+/* Estilos para la lista de productos en el carrito */
+ion-list {
+  margin-top: 20px;
+}
+
+ion-item {
+  --background: var(--ion-background-color);
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--ion-border-color);
+
+  ion-thumbnail {
+    margin-right: 15px;
+  }
+
+  ion-label {
+    font-size: 16px;
+    color: var(--ion-text-color);
+
     h2 {
-      font-size: 1.5rem;
-      margin: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
     }
-  
+
     p {
-      color: var(--ion-color-dark);
+      margin: 5px 0;
+      color: var(--ion-text-color);
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+
+      ion-button {
+        --background: var(--ion-background-color);
+        --color: var(--ion-text-color);
+      }
+
+      .quantity-value {
+        margin: 0 10px;
+        font-size: 16px;
+      }
     }
   }
-  
-  /* Ajustes al botón de eliminar */
-  ion-button {
+
+  ion-button[color="danger"] {
     margin-left: auto;
   }
-  
-.quantity-value {
-    margin: 10px;
-    margin-top: 20px;
+}
+
+/* Estilos para el total del carrito */
+ion-item:last-child {
+  border-top: 1px solid var(--ion-border-color);
+  margin-top: 20px;
+
+  ion-label {
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      color: var(--ion-text-color);
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--ion-text-color);
+    }
   }
+}
+
+/* Estilos para el botón de hacer pedido */
+ion-button[expand="block"] {
+  margin-top: 20px;
+  --background: var(--ion-color-warning);
+  --color: var(--ion-text-color);
+
+  ion-icon{
+    color: #000000;
+  }
+}
+
+/* Estilos para el mensaje de carrito vacío */
+.empty-cart {
+  text-align: center;
+  margin-top: 50%;
+
+  ion-icon {
+    font-size: 80px;
+    color: var(--ion-color-medium);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: var(--ion-text-color);
+  }
+
+  p {
+    color: var(--ion-text-color);
+  }
+
+  ion-button {
+    --background: var(--ion-color-warning);
+    --color: var(--ion-text-color);
+  }
+}

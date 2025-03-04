@@ -7,7 +7,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <h1 style=" text-align: center; margin-top: 20px; color: #666; font-weight: bold; font-size: 20px; margin-bottom: 20px; " >Mis Pedidos</h1>
+  <h1 style=" text-align: center; margin-top: 20px; color: var(--ion-text-color); font-weight: bold; font-size: 20px; margin-bottom: 20px; " >Mis Pedidos</h1>
 
   <div *ngIf="orders.length === 0" class="empty-orders">
     <ion-icon name="cart-outline" class="icon-large"></ion-icon>
@@ -31,6 +31,7 @@
         </p>
         <p><strong>Total:</strong> ${{ order.total }}</p>
         <p><strong>Método de Pago:</strong> {{ order.payment_methodid }}</p>
+        <p><strong>Tiempo de Expiración:</strong> {{ order.expiration_time | date:'short' }}</p> <!-- Añade esta línea -->
       </ion-card-content>
     </ion-card>
   </ion-list>
