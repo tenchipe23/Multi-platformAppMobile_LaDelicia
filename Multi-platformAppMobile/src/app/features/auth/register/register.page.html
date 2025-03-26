@@ -40,6 +40,27 @@
           (ionBlur)="isValidEmail()"></ion-input>
         <p class="error" *ngIf="formErrors.email">{{ formErrors.email }}</p>
 
+        <!-- Campo de dirección -->
+            <ion-input [(ngModel)]="userData.address" name="address" class="input-field" type="text" color="medium"
+            fill="outline" label="Dirección" labelPlacement="floating" (ionBlur)="validateAddress()"></ion-input>
+            <p class="error" *ngIf="formErrors.address">{{ formErrors.address }}</p>
+
+            <!-- Campo de código postal -->
+            <ion-input [(ngModel)]="userData.postal_code" name="postal_code" class="input-field" type="text" color="medium"
+            fill="outline" label="Código postal" labelPlacement="floating" maxlength="5" pattern="[0-9]{5}"
+            (ionBlur)="validatePostalCode()"></ion-input>
+            <p class="error" *ngIf="formErrors.postal_code">{{ formErrors.postal_code }}</p>
+
+            <!-- Campo de fecha de nacimiento -->
+            <ion-input [(ngModel)]="userData.date_of_birth" name="date_of_birth" class="input-field" type="date" color="medium"
+            fill="outline" label="Fecha de nacimiento" labelPlacement="floating" (ionBlur)="validateDateOfBirth()"></ion-input>
+            <p class="error" *ngIf="formErrors.date_of_birth">{{ formErrors.date_of_birth }}</p>
+
+            <!-- Campo de ciudad -->
+            <ion-input [(ngModel)]="userData.city" name="city" class="input-field" type="text" color="medium"
+            fill="outline" label="Ciudad" labelPlacement="floating" (ionBlur)="validateCity()"></ion-input>
+            <p class="error" *ngIf="formErrors.city">{{ formErrors.city }}</p>
+
         <!-- Campo de contraseña -->
         <div class="password-wrapper">
           <ion-input [(ngModel)]="userData.password" name="password" [type]="showPassword ? 'text' : 'password'"
@@ -53,7 +74,7 @@
         </div>
 
         <!-- Confirmar contraseña -->
-        <div class="password-wrapper">
+        <div style="margin-top: 20px;" class="password-wrapper">
           <ion-input [(ngModel)]="confirmPassword" name="confirmPassword"
             [type]="showConfirmPassword ? 'text' : 'password'" class="password" color="medium" fill="outline"
             label="Confirmar contraseña" labelPlacement="floating" required (ionBlur)="isValidPassword()">

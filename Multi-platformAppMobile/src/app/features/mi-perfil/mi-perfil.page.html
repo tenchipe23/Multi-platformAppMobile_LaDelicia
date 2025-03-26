@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="warning" >
+  <ion-toolbar color="warning">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
@@ -14,37 +14,72 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Sección superior con foto de usuario -->
-  <div class="profile-header">
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <!-- User profile section -->
+  <div class="profile-header" *ngIf="!loading">
     <ion-avatar class="profile-photo">
-      <img src="../../../assets/img/usuario.png" alt="Foto del usuario" />
+      <img [src]="photo || '../../../assets/img/usuario.png'" alt="Foto del usuario" />
     </ion-avatar>
-    <ion-button expand="block" fill="outline" color="warning" class="change-photo-button">
+    <ion-button expand="block" fill="outline" color="warning" (click)="changePhoto()">
       Cambiar foto
+    </ion-button>
+    <ion-button expand="block" fill="solid" color="warning" >
+      Editar Perfil
     </ion-button>
   </div>
 
-  <!-- Sección inferior con datos personales -->
-  <ion-list class="profile-details" *ngIf="user">
-    <ion-item class="separator" *ngIf="user.username">
-      <ion-label>Nombre de usuario:</ion-label>
-      <ion-text> {{ user.username }} </ion-text>
-    </ion-item>
-    <ion-item class="separator" *ngIf="user.email">
-      <ion-label>Correo electrónico:</ion-label>
-      <ion-text> {{ user.email }} </ion-text>
-    </ion-item>
-    <ion-item class="separator" *ngIf="user.role">
-      <ion-label>Rol:</ion-label>
-      <ion-text> {{ user.role }} </ion-text>
-    </ion-item>
-  </ion-list>
+  <!-- User information -->
+  <div class="user-info" *ngIf="!loading && user">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Nombre:</ion-label>
+          <ion-text slot="end">{{user.name || 'N/A'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Primer Apellido:</ion-label>
+          <ion-text slot="end">{{user.first_surname || 'N/A'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Segundo Apellido:</ion-label>
+          <ion-text slot="end">{{user.last_surname || 'N/A'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Teléfono:</ion-label>
+          <ion-text slot="end">{{user.phone_number || 'No disponible'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Codigo postal:</ion-label>
+          <ion-text slot="end">{{user.postal_code || 'N/A'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Dirección:</ion-label>
+          <ion-text slot="end">{{user.address || 'N/A'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fecha de nacimiento:</ion-label>
+          <ion-text slot="end">{{user.date_of_birth || 'N/A'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Ciudad:</ion-label>
+          <ion-text slot="end">{{user.city || 'N/A'}}</ion-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-  <ion-button 
-  expand="block" 
-  color="danger" 
-  fill="outline" (click)="logout()">
-  Cerrar Sesión
-</ion-button>
-
+  <!-- Logout button -->
+  <div class="logout-section">
+    <ion-button 
+      expand="block" 
+      color="danger" 
+      fill="outline" 
+      (click)="logout()">
+      Cerrar Sesión
+    </ion-button>
+  </div>
 </ion-content>

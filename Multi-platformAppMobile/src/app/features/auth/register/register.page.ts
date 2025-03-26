@@ -24,6 +24,10 @@ interface UserData {
   phone_number: string;
   email: string;
   password: string;
+  address: string;
+  postal_code: string;
+  date_of_birth: string;
+  city: string;
 }
 
 @Component({
@@ -42,7 +46,11 @@ export class RegisterPage implements OnInit, AfterViewInit {
     last_surname: '',
     phone_number: '',
     email: '',
-    password: ''
+    password: '',
+    address: '',
+    postal_code: '',
+    date_of_birth: '',
+    city: ''
   };
 
   confirmPassword = '';
@@ -54,7 +62,11 @@ export class RegisterPage implements OnInit, AfterViewInit {
     phone_number: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    address: '',
+    postal_code: '',
+    date_of_birth: '',
+    city: ''
   };
 
   constructor(
@@ -134,16 +146,35 @@ export class RegisterPage implements OnInit, AfterViewInit {
     return isValid;
   }
 
-  validateForm(): boolean {
-    return (
-      this.validateUsername() &&
-      this.validateName() &&
-      this.validateFirstSurname() &&
-      this.isValidPhone() &&
-      this.isValidEmail() &&
-      this.isValidPassword()
-    );
-  }
+  // Actualizar las validaciones para que no sean obligatorias
+validateAddress(): boolean {
+  return true; // No es obligatorio
+}
+
+validatePostalCode(): boolean {
+  const isValid = this.userData.postal_code ? /^[0-9]{5}$/.test(this.userData.postal_code) : true;
+  this.formErrors.postal_code = isValid ? '' : 'El código postal debe contener 5 dígitos';
+  return isValid;
+}
+
+validateDateOfBirth(): boolean {
+  return true; // No es obligatorio
+}
+
+validateCity(): boolean {
+  return true; // No es obligatorio
+}
+
+validateForm(): boolean {
+  return (
+    this.validateUsername() &&
+    this.validateName() &&
+    this.validateFirstSurname() &&
+    this.isValidPhone() &&
+    this.isValidEmail() &&
+    this.isValidPassword()
+  );
+}
 
   async register(): Promise<void> {
     if (this.registerForm && this.registerForm.valid && this.validateForm()) {

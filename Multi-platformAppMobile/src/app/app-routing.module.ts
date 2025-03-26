@@ -94,14 +94,30 @@ const routes: Routes = [
     path: 'detalle-pedido/:id',
     loadChildren: () => import('./features/detalle-pedido/detalle-pedido.module').then(m => m.DetallePedidoPageModule),
     canActivate: [AuthGuard]
-  },  {
+  },
+  {
     path: 'qr-code',
     loadChildren: () => import('./features/qr-code/qr-code.module').then( m => m.QrCodePageModule)
   },
   {
     path: 'pago',
     loadChildren: () => import('./features/pago/pago.module').then( m => m.PagoPageModule)
-  }
+  },
+  {
+    path: 'compras',
+    loadChildren: () => import('./features/compras/compras.module').then(m => m.ComprasPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detalle-compra/:id',
+    loadChildren: () => import('./features/detalle-compra/detalle-compra.module').then( m => m.DetalleCompraPageModule),
+    canActivate: [AuthGuard]
+  },
+//  {
+//  path: 'compra-detalle/:orderId',
+//  loadChildren: () => import('./features/compra-detalle/compra-detalle.module').then( m => m.CompraDetallePageModule)
+//   }
+
 
 
 ];

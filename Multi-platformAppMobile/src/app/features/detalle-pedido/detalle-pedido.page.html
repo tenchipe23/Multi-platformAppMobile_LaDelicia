@@ -25,20 +25,20 @@
         }">{{ order.status }}</ion-chip>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Cliente ID:</strong> {{ order.clientid }}</p>
-        <p><strong>Método de Pago:</strong> {{ order.payment_methodid }}</p>
+        <p><strong>Cliente:</strong> {{ username }}</p>
+        <p><strong>Método de Pago:</strong> Efectivo</p>
         <p><strong>Total:</strong> ${{ order.total }}</p>
+        <p><ion-icon name="time-outline"></ion-icon> <strong>Expira en:</strong> {{ order.expiration_time | date:'short' }}</p>
       </ion-card-content>
     </ion-card>
 
-    <h3 class="details-title">Detalles del Pedido</h3>
+    <h3 class="details-title">Productos de la orden:</h3>
     <ion-list>
       <ion-card *ngFor="let detail of order.details" class="detail-card">
         <ion-card-content class="detail-content">
           <ion-img [src]="detail.productImage" alt="{{ detail.productName }}" class="product-image"></ion-img>
           <div class="product-details">
             <p><strong>Producto:</strong> {{ detail.productName }}</p>
-            <p><strong>Producto ID:</strong> {{ detail.productsid }}</p>
             <p><strong>Cantidad:</strong> {{ detail.quantity }}</p>
             <p><strong>Precio Unitario:</strong> ${{ detail.price_at_order }}</p>
             <p><strong>Subtotal:</strong> ${{ detail.subtotal }}</p>
@@ -51,6 +51,15 @@
       <ion-icon name="qr-code-outline" slot="start"></ion-icon>
       Mostrar Código QR
     </ion-button>
+
+
+    <!--progress bar-->
+    <ion-card class="time-remaining-card">
+      <ion-card-content>
+        <p><ion-icon name="alert-circle-outline"></ion-icon> <strong>Tiempo restante:</strong> {{ timeRemaining }}</p>
+        <ion-progress-bar [value]="progress" [color]="progressColor"></ion-progress-bar>
+      </ion-card-content>
+    </ion-card>
   </div>
 
   <ion-infinite-scroll>

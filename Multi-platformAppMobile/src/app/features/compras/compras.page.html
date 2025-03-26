@@ -1,19 +1,60 @@
 <app-header [titulo]="titulo"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Compras</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <h1 class="page-title">📦 Mis Compras</h1>
 
-  <!-- componente compartido -->
-  <app-tab-bar></app-tab-bar>
+  <ion-list>
+    <ion-item *ngFor="let sale of sales" class="order-item" (click)="goToSaleDetail(sale.orderid)">
+      <ion-icon name="receipt-outline" slot="start" class="icon-receipt"></ion-icon>
+      <ion-label>
+        <h2 class="order-title">Compra #{{ sale.orderid }}</h2>
+        <div class="order-amounts">
+          <p class="order-subtotal">
+            <ion-icon name="cash-outline"></ion-icon> Subtotal: {{ formatCurrency(sale.total) }}
+          </p>
+          <p *ngIf="sale.discount !== '0'" class="order-discount">
+            <ion-icon name="pricetag-outline"></ion-icon> Descuento: {{ getDiscount(sale) }}
+          </p>
+          <p class="order-total">
+            <ion-icon name="card-outline"></ion-icon> Total Final: {{ formatCurrency(sale.final_total) }}
+          </p>
+        </div>
+        <p class="order-date">
+          <ion-icon name="calendar-outline"></ion-icon> Fecha: {{ formatDate(sale.sale_date) }}
+        </p>
+        <p class="order-status">
+          <ion-icon name="checkmark-circle-outline"></ion-icon> Estado: {{ sale.status }}
+        </p>
+        <p class="order-items">
+          <ion-icon name="cart-outline"></ion-icon> Cantidad de productos: {{ getTotalItems(sale) }}
+        </p>
+      </ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
 
-  <!-- Contenedor para el mensaje de no compras -->
-  <div class="no-compras-container">
-    <ion-icon name="cart-outline" class="no-compras-icon"></ion-icon>
-    <p class="no-compras-message">Aún no has realizado compras.</p>
-    <ion-button fill="outline" shape="round" color="primary" (click)="irATienda()">Explorar productos</ion-button>
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando tus compras...</p>
   </div>
+
+  <div *ngIf="error" class="ion-text-center ion-padding error-message">
+    <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
+    <p>{{ error }}</p>
+    <ion-button fill="clear" (click)="reloadSales()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Intentar nuevamente
+    </ion-button>
+  </div>
+
+  <div *ngIf="!isLoading && !error && sales.length === 0" class="ion-text-center ion-padding empty-message">
+    <ion-icon name="cart-outline" size="large"></ion-icon>
+    <p>No tienes compras registradas</p>
+  </div>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner=""></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+
+<app-tab-bar></app-tab-bar>

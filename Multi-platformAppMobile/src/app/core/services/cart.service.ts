@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importa HttpClient y HttpHeaders
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private carrito: any[] = []; // Almacena los productos en el carrito
-  private apiUrl = 'http://localhost:3006/api/orders/create/order'; // URL de la API
+  private apiUrl = `${environment.apiUrl}/orders/create/order`;
 
   constructor(private toastController: ToastController, private http: HttpClient) {} // Inyecta HttpClient
 

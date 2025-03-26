@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = `${environment.API_URL}/products/get/products`; // Nueva URL de la API
+  private apiUrl = `${environment.apiUrl}/products/get/products`; // Nueva URL de la API
 
   constructor(private http: HttpClient) { }
 
@@ -38,16 +38,18 @@ getAllProducts(): Observable<any> {
   );
 }
 
-getProductById(id: number): Observable<any> {
-  const url = `${environment.API_URL}/products/get/products/by/id/${id}`;
-  return this.http.get(url, { 
-    headers: this.getHeaders()  // Aquí también se utiliza el método getHeaders
-  }).pipe(
-    catchError((error) => {
-      console.error('Error al obtener el producto:', error);
-      return throwError(error);
-    })
-  );
+getProductById(productId: string): Observable<any> {
+  const token = localStorage.getItem('authToken');
+  if (!token) {
+    throw new Error('No authentication token found');
+  }
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  });
+
+  return this.http.get(`${environment.apiUrl}/products/get/products/by/id/${productId}`, { headers });
 }
 
 

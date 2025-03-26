@@ -8,16 +8,17 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false
 })
 export class QrCodePage implements OnInit {
-  order: any;
+  orderId: string = ''; // Cambiamos a solo almacenar el ID
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (params && params['order']) {
-        this.order = JSON.parse(params['order']);
+        const order = JSON.parse(params['order']);
+        this.orderId = order.id; // Extraemos solo el ID de la orden
       }
     });
-  }
+  } 
 
 }

@@ -33,7 +33,7 @@
 
       <!-- Botones de acción -->
       <div class="action-buttons">
-        <ion-button expand="block" color="warning">
+        <ion-button expand="block" color="warning" (click)="comprarAhora()">
           <ion-icon name="bag-check-outline" slot="start"></ion-icon>
           Comprar ahora
         </ion-button>
@@ -44,16 +44,10 @@
       </div>
     </div>
 
-    <!-- Descripción del producto -->
-    <div class="description-section">
-      <h2>Ingredientes</h2>
-      <p>{{ producto.ingredients }}</p>
-    </div>
-
     <!-- Detalles adicionales -->
     <div class="additional-details">
-      <h2>Detalles adicionales</h2>
-      <p><strong>Tiempo de horneado:</strong> {{ producto.baking_time.minutes }} minutos</p>
+      <h2>Detalles</h2>
+      <p><strong>Ingredientes:</strong> {{ producto.ingredients }}</p>
       <p><strong>Stock disponible:</strong> {{ producto.stock }}</p>
     </div>
   </div>

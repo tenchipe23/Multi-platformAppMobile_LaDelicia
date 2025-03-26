@@ -5,7 +5,6 @@ ion-tab-bar {
   left: 0;
   width: 100%;     /* Asegura que ocupe todo el ancho */
   z-index: 100;    /* Asegura que el tab-bar esté por encima del contenido */
-  box-shadow: 0 -2px 10px var(--ion-border-color); /* Opcional: sombra para darle profundidad */
 }
 
 /* Asegura que los iconos tengan un tamaño adecuado */

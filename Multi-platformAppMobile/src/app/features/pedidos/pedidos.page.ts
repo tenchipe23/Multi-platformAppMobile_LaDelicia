@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../core/services/order.service';
 import { Router } from '@angular/router';
 import { OrderStateService } from '../../core/services/order-state.service'; // Importa el servicio OrderStateService
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { inject } from '@angular/core';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.page.html',
@@ -12,14 +14,39 @@ import { OrderStateService } from '../../core/services/order-state.service'; // 
 export class PedidosPage implements OnInit {
   titulo: string = 'Pedidos';
   orders: any[] = [];
-
+  userName: string = '';
+  http = inject(HttpClient);
   constructor(private orderService: OrderService, private router: Router, private orderStateService: OrderStateService) { }
 
   ngOnInit() {
+    this.loadUserDetails(localStorage.getItem('userId') || '');
     this.loadOrders();
     this.orderStateService.orders$.subscribe((orders) => {
       this.orders = orders;
     });
+  }
+
+  loadUserDetails(userId: string) {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      console.error('No authentication token found');
+      this.userName = 'Usuario no encontrado';
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get(`${environment.apiUrl}/users/get/users/by/${userId}`, { headers }).subscribe(
+      (user: any) => { 
+        this.userName = user.name || 'Usuario no encontrado';
+      },
+      (error) => {
+        console.error('Error fetching user details:', error);
+        this.userName = 'Usuario no encontrado';
+      }
+    );
   }
 
   loadOrders() {
@@ -27,18 +54,17 @@ export class PedidosPage implements OnInit {
     if (userId) {
       this.orderService.getOrdersByClientId(userId).subscribe(
         (data) => {
-          this.orders = data || []; // Asegúrate de que this.orders sea un array
-          this.orderStateService.setOrders(this.orders); // Actualiza el estado compartido
-          console.log('Orders:', this.orders); // Verifica las órdenes en la consola
+          // Filtrar los pedidos para excluir aquellos con el estado "recogido"
+          this.orders = (data || []).filter((order: any) => 
+            order.status !== 'recogido'
+          );
         },
         (error) => {
           console.error('Error fetching orders:', error);
-          this.orders = []; // Inicializa this.orders como un array vacío en caso de error
         }
       );
     } else {
       console.error('User ID not found in localStorage');
-      this.orders = []; // Inicializa this.orders como un array vacío si no se encuentra el ID del usuario
     }
   }
 

@@ -89,7 +89,7 @@ export class PagoPage implements OnInit {
       async () => {
         this.cartService.limpiarCarrito(); // Limpia el carrito después de actualizar el estado de la orden
         await this.mostrarMensajeExito(); // Muestra el mensaje de éxito
-        this.navCtrl.navigateRoot('/home'); // Navega a la página principal o la que desees
+        this.navCtrl.navigateRoot('/pedidos'); // Navega a la página principal o la que desees
       },
       (error) => {
         console.error('Error al actualizar el estado de la orden:', error);

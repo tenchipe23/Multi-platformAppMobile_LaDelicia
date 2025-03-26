@@ -2,15 +2,14 @@
   <ion-toolbar color="warning">
     <ion-title>Código QR</ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/detalle-pedido', order.id]">Cerrar</ion-button>
+      <ion-button [routerLink]="['/detalle-pedido', orderId]">Cerrar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+      
 <ion-content>
   <div class="qr-container">
-    <!-- <qrcode [qrdata]="order | json" [size]="256" [level]="'M'"></qrcode> -->
-    <qrcode [qrdata]="order | json" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    <qrcode [qrdata]="orderId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
   </div>
 </ion-content> 
  The QR Code page is a simple page that displays a QR code generated from the order object. The QR code is generated using the  qrcode  component, which is a custom component that we created in the previous section. 

@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" defaultHref="/compras"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle de Compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="isLoading" class="loading-container ion-text-center">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando detalles de la compra...</p>
+  </div>
+
+  <div *ngIf="error" class="error-container ion-text-center ion-padding">
+    <ion-icon name="alert-circle-outline" color="danger" size="large"></ion-icon>
+    <p class="error-message">{{ error }}</p>
+    <ion-button fill="clear" (click)="goBack()">
+      <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+      Volver a Compras
+    </ion-button>
+  </div>
+
+  <div *ngIf="order && !isLoading && !error" class="order-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">
+          <ion-icon name="receipt-outline"></ion-icon>
+          Compra #{{ order.id }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Fecha de Expiración</h3>
+              <p>{{ formatDate(order.expiration_time) }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="card-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Método de Pago</h3>
+              <p>{{ getPaymentMethod(order.payment_methodid) }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Estado</h3>
+              <ion-badge [color]="order.status === 'recogido' ? 'success' : 'warning'">
+                {{ order.status }}
+              </ion-badge>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="cash-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Total</h3>
+              <p class="total-amount">{{ formatCurrency(order.total) }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <h2 class="section-title ion-padding-top">
+      <ion-icon name="list-outline"></ion-icon>
+      Productos Comprados
+    </h2>
+
+    <ion-list>
+      <ion-item *ngFor="let detail of order.details" class="product-item">
+        <ion-thumbnail slot="start" *ngIf="detail.productImage">
+          <img [src]="detail.productImage" [alt]="detail.productName">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ detail.productName || 'Producto' }}</h2>
+          <p>Cantidad: {{ detail.quantity }}</p>
+          <p>Precio unitario: {{ formatCurrency(detail.price_at_order) }}</p>
+          <p class="subtotal">Subtotal: {{ formatCurrency(detail.subtotal) }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="download-button-container">
+      <ion-button expand="block" color="warning" (click)="downloadTicket()" [disabled]="isDownloading">
+        <ion-icon name="download-outline" slot="start"></ion-icon>
+        {{ isDownloading ? 'Descargando...' : 'Descargar Ticket' }}
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content loadingSpinner=""></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -15,7 +15,6 @@
 }
 
 
-
 ion-label {
     font-weight: bold;
 }
@@ -29,9 +28,10 @@ ion-card {
 }
 
 .profile-card {
-    margin-top: 8%;
+  position: relative;
+  padding-top: 16px;
+  border-radius: 20px;
 }
-
 .profile-photo {
     width: 100px; 
     height: 100px; 
@@ -57,4 +57,30 @@ ion-button {
     max-width: 70%;
     align-items: center;
     margin-left: 15%
+}
+
+.user-info {
+  margin: 16px;
+  
+  ion-card {
+    margin: 0;
+    
+    ion-item {
+      --padding-start: 16px;
+      --padding-end: 16px;
+      
+      ion-label {
+        font-weight: 500;
+        color: var(--ion-color-medium);
+      }
+      
+      ion-text {
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.logout-section {
+  margin: 16px;
 }

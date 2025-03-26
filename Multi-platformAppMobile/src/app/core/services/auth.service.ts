@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -9,8 +9,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private LOGIN_URL = `${environment.API_URL}/auths/login/user`;
+  private LOGIN_URL = `${environment.apiUrl}/auths/login/user`;
   private tokenKey = 'authToken';
+  private userIdKey = 'userId';
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -29,21 +30,27 @@ export class AuthService {
 
     return this.httpClient.post<any>(this.LOGIN_URL, loginData, httpOptions)
       .pipe(
-        catchError(this.handleError) // Captura el error
+        tap(response => {
+          if (response.token) {
+            this.setToken(response.token);
+          }
+          if (response.user && response.user._id) {
+            this.setUserId(response.user._id);
+          }
+        }),
+        catchError(this.handleError)
       );
   }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // Error del lado del cliente o de la red.
       console.error('An error occurred:', error.error.message);
       return throwError('Error de red o del cliente.');
     } else {
-      // El backend devolvió un código de respuesta no exitoso.
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${JSON.stringify(error.error)}`); // Log del error completo
-      return throwError(error.error.message || 'Error al iniciar sesión.'); // Extrae el mensaje de error
+        `body was: ${JSON.stringify(error.error)}`);
+      return throwError(error.error.message || 'Error al iniciar sesión.');
     }
   }
 
@@ -51,8 +58,16 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  private getToken(): string | null {
+  getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
+  }
+
+  private setUserId(userId: string): void {
+    localStorage.setItem(this.userIdKey, userId);
+  }
+
+  getCurrentUserId(): string | null {
+    return localStorage.getItem(this.userIdKey);
   }
 
   isAuthenticated(): boolean {
@@ -61,7 +76,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem('userId');
+    localStorage.removeItem(this.userIdKey);
     this.router.navigate(['/login']);
   }
 }

@@ -1,26 +1,49 @@
-.no-compras-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  text-align: center;
-  padding: 20px;
+.order-item {
+  background-color: rgb(238, 238, 238);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.no-compras-icon {
-  font-size: 4rem;
-  color: #888;
-  margin-bottom: 10px;
+.icon-receipt {
+  color: var(--ion-color-primary);
+  font-size: 24px;
 }
 
-.no-compras-message {
+.order-title {
+  font-weight: bold;
   font-size: 1.2em;
-  color: #666;
-  margin-bottom: 15px;
 }
 
-ion-button {
-  font-size: 1em;
-  --border-radius: 20px;
+.order-amounts p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95em;
+}
+
+.page-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.order-total {
+  font-weight: bold;
+  color: var(--ion-color-success);
+}
+
+.order-status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.error-message ion-icon {
+  font-size: 2em;
+}
+
+.empty-message ion-icon {
+  font-size: 3em;
+  color: var(--ion-color-medium);
 }

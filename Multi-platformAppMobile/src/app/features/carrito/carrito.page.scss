@@ -1,116 +1,127 @@
-/* Estilos para el contenido del carrito */
+/* Fondo del contenido */
 ion-content {
   background-color: var(--ion-background-color);
   color: var(--ion-text-color);
-  padding: 16px;
+  padding: 10px;
 }
 
-/* Estilos para la lista de productos en el carrito */
-ion-list {
+/* Estilos de la lista de productos */
+.cart-list {
   margin-top: 20px;
 }
 
-ion-item {
+.cart-item {
   --background: var(--ion-background-color);
-  --inner-padding-end: 0;
-  --inner-padding-start: 0;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--ion-border-color);
-
-  ion-thumbnail {
-    margin-right: 15px;
-  }
-
-  ion-label {
-    font-size: 16px;
-    color: var(--ion-text-color);
-
-    h2 {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    p {
-      margin: 5px 0;
-      color: var(--ion-text-color);
-    }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-
-      ion-button {
-        --background: var(--ion-background-color);
-        --color: var(--ion-text-color);
-      }
-
-      .quantity-value {
-        margin: 0 10px;
-        font-size: 16px;
-      }
-    }
-  }
-
-  ion-button[color="danger"] {
-    margin-left: auto;
-  }
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
 }
 
-/* Estilos para el total del carrito */
-ion-item:last-child {
-  border-top: 1px solid var(--ion-border-color);
-  margin-top: 20px;
-
-  ion-label {
-    h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 0;
-      color: var(--ion-text-color);
-    }
-
-    p {
-      font-size: 16px;
-      color: var(--ion-text-color);
-    }
-  }
+/* Imagen del producto */
+.product-thumbnail img {
+  border-radius: 8px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 
-/* Estilos para el botón de hacer pedido */
-ion-button[expand="block"] {
-  margin-top: 20px;
-  --background: var(--ion-color-warning);
+/* Estilos del nombre y precio */
+ion-label h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.price {
+  font-size: 16px;
+  color: var(--ion-color-warning);
+  font-weight: bold;
+}
+
+/* Controles de cantidad */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-controls ion-button {
+  --background: transparent;
   --color: var(--ion-text-color);
-
-  ion-icon{
-    color: #000000;
-  }
+  font-size: 1.2rem;
 }
 
-/* Estilos para el mensaje de carrito vacío */
+.quantity-value {
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Botón de eliminar */
+ion-button[color="danger"] {
+  margin-left: auto;
+  --color: #ff4d4d;
+}
+
+/* Caja de total */
+.cart-total {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--ion-color-light);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cart-total h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-total p {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ion-color-success);
+}
+
+/* Botón de compra */
+.checkout-button {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.checkout-button ion-icon {
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
+/* Mensaje de carrito vacío */
 .empty-cart {
   text-align: center;
   margin-top: 50%;
+}
 
-  ion-icon {
-    font-size: 80px;
-    color: var(--ion-color-medium);
-  }
+.empty-cart ion-icon {
+  font-size: 80px;
+  color: var(--ion-color-medium);
+}
 
-  h2 {
-    font-size: 1.5rem;
-    margin: 10px 0;
-    color: var(--ion-text-color);
-  }
+.empty-cart h2 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: var(--ion-text-color);
+}
 
-  p {
-    color: var(--ion-text-color);
-  }
+.empty-cart p {
+  color: var(--ion-text-color);
+}
 
-  ion-button {
-    --background: var(--ion-color-warning);
-    --color: var(--ion-text-color);
-  }
+.empty-cart ion-button {
+  --background: var(--ion-color-warning);
+  --color: var(--ion-text-color);
 }

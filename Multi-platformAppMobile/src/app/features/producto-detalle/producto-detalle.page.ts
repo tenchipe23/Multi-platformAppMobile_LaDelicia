@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; // Importa Router
 import { ProductService } from '../../core/services/product.service';
 import { CartService } from '../../core/services/cart.service'; // Importa el servicio del carrito
 import { ToastController, AlertController } from '@ionic/angular'; // Para mostrar notificaciones y alertas
@@ -19,7 +19,8 @@ export class ProductoDetallePage implements OnInit {
     private productService: ProductService,
     private cartService: CartService, // Servicio del carrito
     private toastController: ToastController, // Para mostrar notificaciones
-    private alertController: AlertController // Para mostrar alertas
+    private alertController: AlertController, // Para mostrar alertas
+    private router: Router // Inyecta Router
   ) {}
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class ProductoDetallePage implements OnInit {
 
   // Cargar detalles del producto
   loadProductDetails(id: number) {
-    this.productService.getProductById(id).subscribe(
+    this.productService.getProductById(id.toString()).subscribe(
       (data: any) => {
         this.producto = data; // Asigna los detalles del producto
       },
@@ -100,5 +101,16 @@ export class ProductoDetallePage implements OnInit {
         this.quantity = 1;
       }
     }
+  }
+
+  // Nueva función para comprar ahora
+  comprarAhora() {
+    const productoConCantidad = {
+      ...this.producto,
+      quantity: this.quantity, // Agrega la cantidad seleccionada
+    };
+    this.router.navigate(['/pago'], {
+      queryParams: { order: JSON.stringify({ details: [productoConCantidad], total: this.producto.price_product * this.quantity }) }
+    });
   }
 }

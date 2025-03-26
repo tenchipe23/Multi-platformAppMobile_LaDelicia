@@ -3,6 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+
 
 interface RegisterResponse {
   token?: string;
@@ -17,7 +19,7 @@ export class RegisterService {
   private http = inject(HttpClient);
   private router = inject(Router);
   
-  private REGISTER_URL = 'http://localhost:3002/api/users/create/user/mobile';
+  private REGISTER_URL = `${environment.apiUrl}/users/create/user/mobile`;
   private tokenKey = 'authToken';
 
   register(registerData: {

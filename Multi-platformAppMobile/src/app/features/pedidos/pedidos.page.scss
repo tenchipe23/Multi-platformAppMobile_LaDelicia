@@ -1,42 +1,70 @@
+.page-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
 .empty-orders {
   text-align: center;
-  margin-top: 50px;
-  color: var(--ion-text-color);
+  margin-top: 40px;
 }
 
 .icon-large {
   font-size: 60px;
-  color: var(--ion-icon-color);
+  color: var(--ion-color-medium);
 }
 
-.order-list ion-card {
-  margin: 10px;
+.order-list {
+  padding-bottom: 20px;
+}
+
+.order-card {
   border-radius: 12px;
   box-shadow: 0 2px 10px var(--ion-border-color);
+  transition: transform 0.4s ease-in-out;
+  margin-bottom: 20px;
+  background-color: rgb(255, 255, 255);
 }
 
-ion-card-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: var(--ion-text-color);
+.order-card:hover {
+  transform: scale(1.02);
 }
 
-ion-card-content p {
-  margin: 5px 0;
-  font-size: 1em;
-  color: var(--ion-text-color);
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Aumenté el espacio entre el icono y el texto */
+}
+
+.order-icon {
+  font-size: 24px;
+  color: var(--ion-color-primary);
+  margin-right: 10px; /* Agregado para separar más el icono del texto */
 }
 
 .pending-status {
-  color: white;
-  background-color: orange;
-  padding: 5px;
-  border-radius: 5px;
+  background-color: #ffc107;
+  color: #fff;
 }
 
-.picked-up-status {
-  color: white;
-  background-color: green;
-  padding: 5px;
-  border-radius: 5px;
+.ready-status {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.canceled-status {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.order-card p {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el icono y el texto dentro del contenido */
+}
+
+.order-card ion-icon {
+  font-size: 18px;
+  color: var(--ion-color-medium);
 }
