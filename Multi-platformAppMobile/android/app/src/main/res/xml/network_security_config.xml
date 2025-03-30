@@ -14,6 +14,12 @@
     <domain includeSubdomains="true"> https://d070ffb0c1b90f40b3efdf4ae47d2f65.serveo.net</domain>
     <domain includeSubdomains="true">https://stirred-sculpin-carefully.ngrok-free.app</domain>
     <domain includeSubdomains="true">192.168.3.237</domain>
+    <domain includeSubdomains="true">192.168.1.252</domain>
+    <domain includeSubdomains="true">192.168.68.239</domain>
+    <domain includeSubdomains="true">172.20.10.2</domain>
+    <domain includeSubdomains="true">172.17.144.1</domain>
+    <domain includeSubdomains="true">192.168.127.159</domain>
+
 
   </domain-config>
 </network-security-config>

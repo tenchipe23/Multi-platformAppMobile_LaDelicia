@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = `${environment.apiUrl}/users/get/users/by`;
+  private apiUrl = `${environment.API_URL}/users/get/users/by`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -20,6 +20,28 @@ export class UserService {
     });
 
     return this.http.get(`${this.apiUrl}/${userId}`, { headers }).pipe(
+      map(response => response)
+    );
+  }
+
+  getUserById(userId: string): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get(`${this.apiUrl}/${userId}`, { headers }).pipe(
+      map(response => response)
+    );
+  }
+
+  updateUser(userId: string, userData: any): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.apiUrl}/users/update/users/${userId}`, userData, { headers }).pipe(
       map(response => response)
     );
   }

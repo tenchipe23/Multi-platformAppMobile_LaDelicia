@@ -131,7 +131,7 @@ export class DetallePedidoPage implements OnInit, OnDestroy {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get(`${environment.apiUrl}/users/get/users/by/${userId}`, { headers }).subscribe(
+    this.http.get(`${environment.API_URL}/users/get/users/by/${userId}`, { headers }).subscribe(
       (user: any) => {
         this.userName = user.name || 'Usuario no encontrado';
       },
@@ -159,7 +159,7 @@ export class DetallePedidoPage implements OnInit, OnDestroy {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get(`${environment.apiUrl}/users/get/users/by/${userId}`, { headers }).subscribe(
+    this.http.get(`${environment.API_URL}/users/get/users/by/${userId}`, { headers }).subscribe(
       (response: any) => {
         this.username = response.authData.username || 'Usuario no encontrado';
       },

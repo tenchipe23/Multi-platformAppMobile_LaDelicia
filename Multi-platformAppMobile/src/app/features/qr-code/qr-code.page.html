@@ -2,19 +2,22 @@
   <ion-toolbar color="warning">
     <ion-title>Código QR</ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/detalle-pedido', orderId]">Cerrar</ion-button>
+      <ion-button [routerLink]="['/detalle-pedido', orderId]" fill="clear" color="light">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-      
+
 <ion-content>
+  <h1 style="text-align: center; font-size: 1.2rem; color: var(--ion-color-warning); font-weight: 600; ">Muestra el código QR de tu pedido para recogerlo</h1>
   <div class="qr-container">
-    <qrcode [qrdata]="orderId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    <div class="qr-wrapper">
+      <qrcode [qrdata]="orderId" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+    <div class="order-info">
+      <p class="order-id">Pedido #{{orderId}}</p>
+      <p class="order-status">Listo para recoger</p>
+    </div>
   </div>
-</ion-content> 
- The QR Code page is a simple page that displays a QR code generated from the order object. The QR code is generated using the  qrcode  component, which is a custom component that we created in the previous section. 
- The QR code is generated from the order object, which is passed as input to the  qrcode  component. The  size  input is set to 256, which specifies the size of the QR code. The  level  input is set to 'M', which specifies the error correction level of the QR code. 
- The QR Code page also includes a button that allows the user to close the page and return to the order details page. The button is implemented using the  ion-button  component and the  routerLink  directive. The  routerLink  directive is used to navigate to the order details page when the button is clicked. 
- Step 4: Add the QR Code Page to the App Module 
- The final step is to add the QR Code page to the app module so that it can be accessed from other pages in the app. 
- Open the  app.module.ts  file and import the QR Code page component. Add the QR Code page component to the  declarations  array in the  &#64;NgModule  decorator.
+</ion-content>

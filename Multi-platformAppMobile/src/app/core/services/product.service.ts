@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = `${environment.apiUrl}/products/get/products`; // Nueva URL de la API
+  private apiUrl = `${environment.API_URL}/products/get/products`; // Nueva URL de la API
 
   constructor(private http: HttpClient) { }
 
@@ -49,7 +49,7 @@ getProductById(productId: string): Observable<any> {
     'Content-Type': 'application/json'
   });
 
-  return this.http.get(`${environment.apiUrl}/products/get/products/by/id/${productId}`, { headers });
+  return this.http.get(`${environment.API_URL}/products/get/products/by/id/${productId}`, { headers });
 }
 
 

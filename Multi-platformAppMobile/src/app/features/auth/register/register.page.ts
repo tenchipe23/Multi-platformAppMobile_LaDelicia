@@ -147,23 +147,42 @@ export class RegisterPage implements OnInit, AfterViewInit {
   }
 
   // Actualizar las validaciones para que no sean obligatorias
-validateAddress(): boolean {
-  return true; // No es obligatorio
-}
+  validateAddress(): boolean {
+    if (this.userData.address) {
+      const isValid = this.userData.address.trim().length > 0;
+      this.formErrors.address = isValid ? '' : 'La dirección no puede estar vacía';
+      return isValid;
+    }
+    return true; // No es obligatorio
+  }
 
-validatePostalCode(): boolean {
-  const isValid = this.userData.postal_code ? /^[0-9]{5}$/.test(this.userData.postal_code) : true;
-  this.formErrors.postal_code = isValid ? '' : 'El código postal debe contener 5 dígitos';
-  return isValid;
-}
+  validatePostalCode(): boolean {
+    if (this.userData.postal_code) {
+      const isValid = /^[0-9]{5}$/.test(this.userData.postal_code);
+      this.formErrors.postal_code = isValid ? '' : 'El código postal debe contener exactamente 5 dígitos';
+      return isValid;
+    }
+    return true; // No es obligatorio
+  }
 
 validateDateOfBirth(): boolean {
+  if (this.userData.date_of_birth) {
+    const isValid = /^\d{4}-\d{2}-\d{2}$/.test(this.userData.date_of_birth);
+    this.formErrors.date_of_birth = isValid ? '' : 'El formato de la fecha de nacimiento debe ser YYYY-MM-DD';
+    return isValid;
+  }
   return true; // No es obligatorio
 }
 
 validateCity(): boolean {
+  if (this.userData.city) {
+    const isValid = /^[a-zA-Z\s]*$/.test(this.userData.city);
+    this.formErrors.city = isValid ? '' : 'La ciudad no debe contener números o caracteres especiales';
+    return isValid;
+  }
   return true; // No es obligatorio
 }
+
 
 validateForm(): boolean {
   return (

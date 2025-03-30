@@ -23,12 +23,10 @@
   <div class="profile-header" *ngIf="!loading">
     <ion-avatar class="profile-photo">
       <img [src]="photo || '../../../assets/img/usuario.png'" alt="Foto del usuario" />
+      <ion-icon name="camera" class="camera-icon" (click)="changePhoto()"></ion-icon>
     </ion-avatar>
-    <ion-button expand="block" fill="outline" color="warning" (click)="changePhoto()">
-      Cambiar foto
-    </ion-button>
-    <ion-button expand="block" fill="solid" color="warning" >
-      Editar Perfil
+    <ion-button expand="block" fill="solid" color="warning" (click)="openEditModal()">
+      Editar Perfil <ion-icon slot="end" name="create-outline"></ion-icon>
     </ion-button>
   </div>
 
@@ -36,6 +34,10 @@
   <div class="user-info" *ngIf="!loading && user">
     <ion-card>
       <ion-card-content>
+        <ion-item>
+          <ion-label>Username:</ion-label>
+          <ion-text slot="end">{{ authData.username }}</ion-text>
+        </ion-item>
         <ion-item>
           <ion-label>Nombre:</ion-label>
           <ion-text slot="end">{{user.name || 'N/A'}}</ion-text>
@@ -49,11 +51,15 @@
           <ion-text slot="end">{{user.last_surname || 'N/A'}}</ion-text>
         </ion-item>
         <ion-item>
+          <ion-label>Email:</ion-label>
+          <ion-text slot="end">{{ authData.email }}</ion-text>
+        </ion-item>
+        <ion-item>
           <ion-label>Teléfono:</ion-label>
           <ion-text slot="end">{{user.phone_number || 'No disponible'}}</ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label>Codigo postal:</ion-label>
+        <!-- <ion-item> -->
+          <!-- <ion-label>Codigo postal:</ion-label>
           <ion-text slot="end">{{user.postal_code || 'N/A'}}</ion-text>
         </ion-item>
         <ion-item>
@@ -67,7 +73,7 @@
         <ion-item>
           <ion-label>Ciudad:</ion-label>
           <ion-text slot="end">{{user.city || 'N/A'}}</ion-text>
-        </ion-item>
+        </ion-item> -->
       </ion-card-content>
     </ion-card>
   </div>

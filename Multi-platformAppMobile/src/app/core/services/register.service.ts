@@ -19,7 +19,7 @@ export class RegisterService {
   private http = inject(HttpClient);
   private router = inject(Router);
   
-  private REGISTER_URL = `${environment.apiUrl}/users/create/user/mobile`;
+  private REGISTER_URL = `${environment.API_URL}/users/create/user/mobile`;
   private tokenKey = 'authToken';
 
   register(registerData: {

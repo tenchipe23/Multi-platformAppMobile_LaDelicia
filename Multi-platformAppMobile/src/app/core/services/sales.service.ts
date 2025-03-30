@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SalesService {
-  private baseUrl = `${environment.apiUrl}/sales`;
-  private ordersUrl = `${environment.apiUrl}/orders`;
+  private baseUrl = `${environment.API_URL}/sales`;
+  private ordersUrl = `${environment.API_URL}/orders`;
 
   constructor(private http: HttpClient) {}
 
@@ -80,7 +80,7 @@ export class SalesService {
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<any>(`${environment.apiUrl}/products/get/products/by/id/${productId}`, { headers })
+    return this.http.get<any>(`${environment.API_URL}/products/get/products/by/id/${productId}`, { headers })
       .pipe(
         catchError(error => {
           console.error('Error obteniendo detalles del producto:', error);

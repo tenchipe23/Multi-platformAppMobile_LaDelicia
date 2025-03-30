@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class CartService {
   private carrito: any[] = []; // Almacena los productos en el carrito
-  private apiUrl = `${environment.apiUrl}/orders/create/order`;
+  private apiUrl = `${environment.API_URL}/orders/create/order`;
 
   constructor(private toastController: ToastController, private http: HttpClient) {} // Inyecta HttpClient
 

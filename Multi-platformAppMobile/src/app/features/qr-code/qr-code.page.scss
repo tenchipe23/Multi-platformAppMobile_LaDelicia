@@ -1,7 +1,60 @@
 /* filepath: /c:/Users/herre/OneDrive/Escritorio/UTCV/5 Cuatrimestre/PROYECTO INTEGRADOR/AppGit/Multi-platformAppMobile_LaDelicia/Multi-platformAppMobile/src/app/features/qr-code/qr-code.page.scss */
 .qr-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100%;
+  
+  .qr-wrapper {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0.2, 0.4);
+    animation: fadeIn 0.5s ease-in-out;
+    
+    qrcode {
+      width: 256px !important;
+      height: 256px !important;
+    }
   }
+
+  .order-info {
+    margin-top: 20px;
+    text-align: center;
+    
+    .order-id {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ion-color-warning);
+      margin: 0;
+    }
+    
+    .order-status {
+      font-size: 0.9rem;
+      color: var(--ion-color-medium);
+      margin: 4px 0 0;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  
+  ion-icon {
+    font-size: 24px;
+  }
+}

@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../../core/services/auth.service';
 import { UserService } from '../../core/services/user.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ActionSheetController } from '@ionic/angular';
+import { EditarPerfilModalComponent } from './editar-perfil-modal/editar-perfil-modal.component';
+import { ProfileService } from '../../core/services/profile.service';
 
-
+interface UserResponse {
+  userData: any;
+  authData: any;
+}
 
 @Component({
   selector: 'app-mi-perfil',
@@ -19,19 +24,70 @@ export class MiPerfilPage implements OnInit {
   userId: string | null = null;
   loading = true;
   photo: string | undefined;
+  public authData: any;
+  
 
   constructor(
     private navController: NavController,
     private authService: AuthService,
     private alertController: AlertController,
     private userService: UserService,
-    private actionSheetController: ActionSheetController // Agregar esta línea
+    private profileService: ProfileService,
+    private actionSheetController: ActionSheetController,
+    private modalCtrl: ModalController
   ) { }
+
+  async openEditModal() {
+    const modal = await this.modalCtrl.create({
+      component: EditarPerfilModalComponent,
+      componentProps: {
+        userId: this.userId
+      },
+      cssClass: 'modal-flotante',
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.5,
+      backdropDismiss: true
+    });
+
+    modal.onDidDismiss().then((data) => {
+      if (data.data?.updated) {
+        this.fetchUserData(); // Refrescar datos del usuario
+      }
+    });
+
+    await modal.present();
+  }
+
+  async changeProfilePhoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Photos,
+    });
+  
+    if (image.webPath) {
+      this.photo = image.webPath;
+      this.profileService.setProfilePhoto(this.photo); // Guarda la foto en el servicio
+    } else {
+      console.error('No se pudo obtener la ruta de la imagen');
+    }
+  }
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
     if (this.userId) {
-      this.fetchUserData();
+      this.userService.getUserById(this.userId).subscribe(
+        (data: UserResponse) => {
+          this.user = data.userData;
+          this.authData = data.authData;
+          this.loading = false; // Ocultar spinner
+        },
+        (error) => {
+          console.error('Error fetching user data:', error);
+          this.loading = false; // Ocultar spinner en caso de error
+        }
+      );
     }
   }
 
@@ -50,7 +106,7 @@ export class MiPerfilPage implements OnInit {
           text: 'Seleccionar de la galería',
           icon: 'image',
           handler: () => {
-            this.selectFromGallery();
+            this.selectFromGallery();//?????
           }
         },
         {
@@ -114,6 +170,7 @@ export class MiPerfilPage implements OnInit {
       this.loading = false;
     }
   }
+
 
   async logout() {
     const alert = await this.alertController.create({

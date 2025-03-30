@@ -1,0 +1,13 @@
+.modal-flotante {
+  --width: 90%;
+  --max-width: 500px;
+  --height: auto;
+  --border-radius: 16px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .modal-flotante {
+    --width: 70%;
+  }
+}

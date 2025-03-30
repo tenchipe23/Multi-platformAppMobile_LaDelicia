@@ -9,8 +9,8 @@ import { Order } from '../models/order.model';
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = `${environment.apiUrl}/orders`;	
-  private productUrl = `${environment.apiUrl}/products`;
+  private baseUrl = `${environment.API_URL}/orders`;	
+  private productUrl = `${environment.API_URL}/products`;
 
   constructor(private http: HttpClient, private orderStateService: OrderStateService) {}
 

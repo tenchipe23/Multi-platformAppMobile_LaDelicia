@@ -38,7 +38,7 @@ export class PedidosPage implements OnInit {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get(`${environment.apiUrl}/users/get/users/by/${userId}`, { headers }).subscribe(
+    this.http.get(`${environment.API_URL}/users/get/users/by/${userId}`, { headers }).subscribe(
       (user: any) => { 
         this.userName = user.name || 'Usuario no encontrado';
       },

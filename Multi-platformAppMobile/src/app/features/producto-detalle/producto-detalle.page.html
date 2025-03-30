@@ -33,10 +33,6 @@
 
       <!-- Botones de acción -->
       <div class="action-buttons">
-        <ion-button expand="block" color="warning" (click)="comprarAhora()">
-          <ion-icon name="bag-check-outline" slot="start"></ion-icon>
-          Comprar ahora
-        </ion-button>
         <ion-button expand="block" fill="outline" color="medium" (click)="confirmarAgregarAlCarrito()">
           <ion-icon name="cart" slot="start"></ion-icon>
           Agregar al carrito
@@ -48,7 +44,7 @@
     <div class="additional-details">
       <h2>Detalles</h2>
       <p><strong>Ingredientes:</strong> {{ producto.ingredients }}</p>
-      <p><strong>Stock disponible:</strong> {{ producto.stock }}</p>
+      <!-- <p><strong>Stock disponible:</strong> {{ producto.stock }}</p> -->
     </div>
   </div>
 
