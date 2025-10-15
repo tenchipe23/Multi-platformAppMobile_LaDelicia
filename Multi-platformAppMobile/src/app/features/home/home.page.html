@@ -1,165 +1,233 @@
 <app-header [titulo]="titulo"></app-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Banner minimalista -->
-  <div class="hero-banner">
-    <div class="hero-content">
-      <h1>Panadería La Delicia</h1>
-      <p>Pan fresco y delicioso todos los días</p>
-      <ion-button fill="outline" shape="round" color="light" routerLink="/productos">
-        Explorar
-      </ion-button>
+  <section class="hero">
+    <div class="hero__badge">
+      <ion-icon name="leaf-outline"></ion-icon>
+      Receta familiar desde 1998
     </div>
-  </div>
-  
-  <!-- Sección de productos destacados -->
-  <div class="productos-destacados">
-    <h3>Ofrecemos</h3>
-    <div class="productos-container">
-      <div class="producto">
-        <ion-img src="../../../assets/img/fresco.jpg"></ion-img>
-        <p>Pan Fresco</p>
-      </div>
-      <div class="producto">
-        <ion-img src="../../../assets/img/pastelmod.jpeg"></ion-img>
-        <p>Deliciosa Pasteleria</p>
-      </div>
-      <div class="producto">
-        <ion-img src="../../../assets/img/panM.jpg"></ion-img>
-        <p>Pan Para Cada Temporada</p>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Sección destacada -->
-  <div class="featured-section">
-    <h2>Nuestros productos</h2>
-    <div class="product-scroll">
-      <div class="product-item" *ngFor="let producto of productos" [routerLink]="['/producto-detalle', producto.id]">
-        <div class="product-image">
-          <ion-img [src]="producto.image"></ion-img>
-        </div>
-        <div class="product-info">
-          <h3>{{ producto.name_product }}</h3>
-          <p class="price">{{ producto.price_product | currency }}</p>
-         </div>
-      </div>
-      <div class="product-item view-all-card">
-        <button [routerLink]="['/productos']" class="view-all-button">
-          Ver todos los productos <ion-icon name="arrow-forward-outline"></ion-icon> 
+    <div class="hero__content">
+      <h1>Panaderia La Delicia</h1>
+      <p>Pan artesanal, cafe de especialidad y reposteria hecha cada manana con ingredientes honestos.</p>
+      <div class="hero__actions">
+        <ion-button fill="solid" shape="round" color="light" routerLink="/productos">
+          Ver menu
+        </ion-button>
+        <button class="hero__link" routerLink="/contacto">
+          Agenda tu pedido
         </button>
       </div>
     </div>
-  </div>
+    <div class="hero__card">
+      <h3>Pan del dia</h3>
+      <p>Croissants de mantequilla listos a partir de las 7:00 am.</p>
+      <span>Solo por la manana</span>
+    </div>
+  </section>
 
+  <section class="highlights">
+    <article class="highlight-card">
+      <ion-icon name="flame-outline"></ion-icon>
+      <div>
+        <h3>Horneado cada hora</h3>
+        <p>Siempre fresco, listo para llevar o disfrutar en tienda.</p>
+      </div>
+    </article>
+    <article class="highlight-card">
+      <ion-icon name="bicycle-outline"></ion-icon>
+      <div>
+        <h3>Entrega local</h3>
+        <p>Pedidos antes de las 5 pm para recibir en casa el mismo dia.</p>
+      </div>
+    </article>
+    <article class="highlight-card">
+      <ion-icon name="cafe-outline"></ion-icon>
+      <div>
+        <h3>Barra de especialidad</h3>
+        <p>Maridajes perfectos con mezcla de la casa y bebidas frias.</p>
+      </div>
+    </article>
+  </section>
 
-  <!-- Sección de Blog -->
-<div class="blog-section">
-  <h2>Últimas Noticias y Recetas</h2>
-  <div class="blog-container">
-    <div class="blog-card" *ngFor="let post of blogPosts" [routerLink]="['/blog', post.id]">
-      <ion-img [src]="post.image"></ion-img>
-      <div class="blog-info">
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.description }}</p>
-        <ion-button href="https://www.ejemplo.com/articulo" target="_blank" fill="outline" size="small" color="primary">
-          Leer más
-        </ion-button>
+  <section class="signature">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Clasicos de vitrina</span>
+        <h2>Nuestros favoritos del dia</h2>
+      </div>
+      <button class="section-link" routerLink="/productos">
+        Ver todo<ion-icon name="arrow-forward-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="signature__list">
+      <article
+        class="signature-card"
+        *ngFor="let producto of productos | slice:0:6"
+        [routerLink]="['/producto-detalle', producto.id]"
+      >
+        <ion-img [src]="producto.image" alt="{{ producto.name_product }}"></ion-img>
+        <div class="signature-card__info">
+          <h3>{{ producto.name_product }}</h3>
+          <p class="signature-card__price">{{ producto.price_product | currency }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="categories">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Para cada antojo</span>
+        <h2>Explora por seccion</h2>
       </div>
     </div>
-  </div>
-</div>
+    <div class="categories__grid">
+      <article class="category-card" routerLink="/productos">
+        <div class="category-card__icon">
+          <ion-icon name="fast-food-outline"></ion-icon>
+        </div>
+        <h3>Pan del dia</h3>
+        <p>Bagels, conchas y baguettes recien horneados.</p>
+      </article>
+      <article class="category-card" routerLink="/productos">
+        <div class="category-card__icon">
+          <ion-icon name="ice-cream-outline"></ion-icon>
+        </div>
+        <h3>Reposteria fina</h3>
+        <p>Tartas de fruta, brownies y postres individuales.</p>
+      </article>
+      <article class="category-card" routerLink="/productos">
+        <div class="category-card__icon">
+          <ion-icon name="wine-outline"></ion-icon>
+        </div>
+        <h3>Bebidas artesanales</h3>
+        <p>Limonadas, cold brew y chocolate caliente.</p>
+      </article>
+    </div>
+  </section>
 
-  <!-- Carrusel de comentarios -->
-  <div class="testimonials-section">
-    <h2>Lo que dicen nuestros clientes</h2>
-    <div class="testimonials-carousel">
-      <div class="testimonial-slide" [ngClass]="{'active': currentSlide === 0}">
-        <div class="testimonial-content">
-          <div class="testimonial-stars">
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-          </div>
-          <p>"El mejor pan que he probado. Siempre fresco y con ese sabor a tradición que tanto me gusta."</p>
-          <div class="testimonial-author">
-            <span>María González</span>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-slide" [ngClass]="{'active': currentSlide === 1}">
-        <div class="testimonial-content">
-          <div class="testimonial-stars">
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star-half"></ion-icon>
-          </div>
-          <p>"Sus pasteles son una delicia, perfectos para cualquier ocasión especial. La atención al cliente es excelente."</p>
-          <div class="testimonial-author">
-            <span>Carlos Rodríguez</span>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-slide" [ngClass]="{'active': currentSlide === 2}">
-        <div class="testimonial-content">
-          <div class="testimonial-stars">
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-          </div>
-          <p>"Las medialunas son increíbles. Vengo todas las mañanas por ellas antes de ir al trabajo."</p>
-          <div class="testimonial-author">
-            <span>Lucía Martínez</span>
-          </div>
-        </div>
+  <section class="process">
+    <div class="process__card">
+      <h2>Como lo hacemos</h2>
+      <ul>
+        <li>
+          <span>1</span>
+          Seleccionamos harinas locales y mantequilla artesanal.
+        </li>
+        <li>
+          <span>2</span>
+          Fermentaciones lentas para desarrollar sabor autentico.
+        </li>
+        <li>
+          <span>3</span>
+          Horneado diario en horno de piedra y entrega inmediata.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Testimonios reales</span>
+        <h2>Lo que dicen nuestros clientes</h2>
       </div>
     </div>
-    <div class="testimonial-indicators">
-      <span [ngClass]="{'active': currentSlide === 0}" (click)="setSlide(0)"></span>
-      <span [ngClass]="{'active': currentSlide === 1}" (click)="setSlide(1)"></span>
-      <span [ngClass]="{'active': currentSlide === 2}" (click)="setSlide(2)"></span>
+    <div class="testimonials__slider">
+      <article class="testimonial-card" [ngClass]="{'active': currentSlide === 0}">
+        <div class="testimonial-card__stars">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>"El mejor pan que he probado. Siempre fresco y con sabor casero."</p>
+        <span class="testimonial-card__author">Maria Gonzalez</span>
+      </article>
+      <article class="testimonial-card" [ngClass]="{'active': currentSlide === 1}">
+        <div class="testimonial-card__stars">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star-half"></ion-icon>
+        </div>
+        <p>"Sus pasteles son una delicia y la atencion siempre con una sonrisa."</p>
+        <span class="testimonial-card__author">Carlos Rodriguez</span>
+      </article>
+      <article class="testimonial-card" [ngClass]="{'active': currentSlide === 2}">
+        <div class="testimonial-card__stars">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>"Las medialunas son mi ritual de la manana. Textura perfecta siempre."</p>
+        <span class="testimonial-card__author">Lucia Martinez</span>
+      </article>
     </div>
-  </div>
+    <div class="testimonials__dots">
+      <button [ngClass]="{'active': currentSlide === 0}" (click)="setSlide(0)" aria-label="Testimonio 1"></button>
+      <button [ngClass]="{'active': currentSlide === 1}" (click)="setSlide(1)" aria-label="Testimonio 2"></button>
+      <button [ngClass]="{'active': currentSlide === 2}" (click)="setSlide(2)" aria-label="Testimonio 3"></button>
+    </div>
+  </section>
 
-  
-  <!-- Sección de acceso rápido
-  <section class="quick-access">
-    <h3 style="display: flex; justify-content: center;"><b>Acceso Rápido</b></h3>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6" size-md="3">
-          <ion-button expand="full" color="primary" [routerLink]="['/pedidos']">
-            <ion-icon name="basket" slot="start"></ion-icon> Mis Pedidos
-          </ion-button>
-        </ion-col>
-        <ion-col size="6" size-md="3">
-          <ion-button expand="full" color="secondary" [routerLink]="['/mi-perfil']">
-            <ion-icon name="person" slot="start"></ion-icon> Mi Cuenta
-          </ion-button>
-        </ion-col>
-        <ion-col size="6" size-md="3">
-          <ion-button expand="full" color="tertiary" [routerLink]="['/ayuda']">
-            <ion-icon name="help" slot="start"></ion-icon> Ayuda
-          </ion-button>
-        </ion-col>
-        <ion-col size="6" size-md="3">
-          <ion-button expand="full" color="danger" [routerLink]="['/contacto']">
-            <ion-icon name="mail" slot="start"></ion-icon> Contacto
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </section> -->
+  <section class="blog">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Historias y recetas</span>
+        <h2>Desde nuestra cocina</h2>
+      </div>
+      <button class="section-link" routerLink="/blog">
+        Ver blog<ion-icon name="arrow-forward-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="blog__list">
+      <article class="blog-card" *ngFor="let post of blogPosts" [routerLink]="['/blog', post.id]">
+        <ion-img [src]="post.image" alt="{{ post.title }}"></ion-img>
+        <div class="blog-card__content">
+          <span class="blog-card__tag">Receta</span>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+          <span class="blog-card__link">Leer mas</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta__card">
+      <div>
+        <span class="section-kicker">Reserva anticipada</span>
+        <h2>Prepara tu mesa con Delicia</h2>
+        <p>Personaliza tu pedido para eventos o reuniones, listo para recoger o entregar.</p>
+      </div>
+      <ion-button fill="outline" shape="round" color="light" routerLink="/pedidos">
+        Crear pedido
+      </ion-button>
+    </div>
+  </section>
+
+  <section class="info-grid">
+    <article>
+      <h3>Ubicacion</h3>
+      <p>Av. Centro 245, Xalapa Veracruz</p>
+    </article>
+    <article>
+      <h3>Horarios</h3>
+      <p>Lun a Sab 7:00 - 21:00<br>Dom 8:00 - 15:00</p>
+    </article>
+    <article>
+      <h3>Contacto</h3>
+      <p>228 555 0192<br>holelicia.mx</p>
+    </article>
+  </section>
 
   <ion-infinite-scroll>
-    <ion-infinite-scroll-content loadingSpinner="virtual"></ion-infinite-scroll-content>
+    <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
 

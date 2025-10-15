@@ -1,3 +1,7 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// You can add configuration options common to all sub-projects/modules here.
+// You can also use this file to define build script dependencies, which are used by the build system itself.
+
 buildscript {
     
     repositories {
